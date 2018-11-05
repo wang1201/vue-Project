@@ -1,0 +1,9 @@
+
+
+@import './particles/variable';
+@import './particles/mixins';
+@import './particles/reset'; 
+body{
+    display: flex;
+    justify-content: space-between;
+}

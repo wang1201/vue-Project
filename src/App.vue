@@ -1,29 +1,39 @@
+// App.vue是我们的主组件，所有页面都是在App.vue下进行切换的。
+
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <app-header></app-header>
+    
+    <main>
+      <app-home></app-home>
+    </main>
+
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+
+<script>
+//头部公共的布局组件
+import AppHeader from '@com/layout/AppHeader'
+//主页
+import AppHome from '@pages/home/AppHome'
+
+export default {
+    //别名，有名字的组件有更友好的警告信息。组件在全局用 Vue.component() 注册时，全局 ID 自动作为组件的 name。
+    name: 'app',
+    components: {
+      //等同于：AppHome:AppHome,上面可以写app-home也可以是AppHome，app-home更符合w3c规范
+      AppHome,
+      AppHeader
     }
-  }
 }
+
+</script>
+
+<style lang="scss">//lang相当于language指定是css scss 还是stylus
+  main {
+   
+  }
+
+
 </style>
