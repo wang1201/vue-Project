@@ -84,3 +84,62 @@ App.vue 根组件  任何一个项目， 都需要一个根实例，根实例里
 
 
 
+配置路由， 新建router-index.js    main.js引入该文件，并注册到组件里
+// 配置完成后，把router 实例注入到 vue 根实例中,就可以使用路由了，也就是main.js
+// 配置路由表routes
+import vue from 'vue'; //引入package.json的vue插件
+import VueRouter from 'vue-router'; //引入package.json的路由插件
+
+vue.use(VueRouter);
+
+import appHome from '@pages/home/AppHome'
+import notFound from '@pages/not-found/NotFound'
+
+let routes = [{
+    path: '/', //默认路径时 重定向
+    redirect: '/home',
+    // alias: '/home'
+}, {
+    path: '/home',//路径
+    name: 'home', //可以直接通过路由的path去访问  也可以通过配置的这个name
+    component: appHome //显示的组件
+}{
+    path: '/not-found',
+    name: 'not-found',
+    component: notFound 
+}, {
+    path: '**',//其他的乱七八糟的写的后缀
+    redirect: '/not-found', //显示的组件
+}]
+
+
+//路由工具
+// 配置完成后，把router 实例注入到 vue 根实例中,就可以使用路由了，也就是main.js
+最后创建router 对路由进行管理，它是由构造函数 new vueRouter() 创建，接受routes 参数。
+let router = new VueRouter({ 
+    mode: 'history',//h5 histpry 直接
+    // mode:'hash',//hash 带#/home这种
+    // base: '/app/',重命名
+    routes   // routes: routes 的简写,仅仅是把routes提溜出去了而已
+    // routes: [{
+    //         path: '/foo',
+    //         component: Foo
+    //     },
+    //     {
+    //         path: '/bar',
+    //         component: Bar
+    //     }
+    // ]
+})
+export default router
+
+####配置完成后，把router 实例注入到 vue 根实例中,就可以使用路由了
+const app = new Vue({
+  router
+}).$mount('#app')
+
+####router-link 标签渲染成了 a 标签，to 属性变成了a 标签的 href 属性，这时就明白了点击跳转的意思。router-view 标签渲染成了我们定义的组件，其实它就是一个占位符，它在什么地方，匹配路径的组件就在什么地方，所以 router-link 和router-view 标签一一对应，成对出现
+
+#### <router-link to="/cinema">点击跳转</router-link>to为切换的路由router-link 处于选中状态时，vueRouter 会自动添加这个类
+
+### <router-view></router-view>//根据路由的变化要动态切换显示的区域
