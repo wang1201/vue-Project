@@ -10,7 +10,7 @@ import '@styles/main.scss'
 // flexible 移动端适配
 import '@libs/flexible'
 
-
+import '@libs'//相当于libs/index.js
 // Vue.config.devtools = false
 Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示。控制台打印的
 
