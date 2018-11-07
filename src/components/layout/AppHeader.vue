@@ -52,7 +52,7 @@ export default {
     .page-title{
         h1{
             color: #ffffff;
-            font-size: 36px;
+            font-size: .48rem;
         }
     }
     .header-content {

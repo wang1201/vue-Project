@@ -9,10 +9,21 @@ function resolve(url) {
 }
 
 
+
 module.exports = {
-    devServer: {
-      port: 8000
-    },
+  devServer: {
+    port: 8000,
+    proxy: {
+      '/my': {
+        target: 'http://m.maoyan.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/my': ''
+        }
+      }
+    }
+  },
+    
     chainWebpack  (config)  {//webpack建立api，用于生成和修改webpack配置
        config 
             .resolve
@@ -21,6 +32,8 @@ module.exports = {
             .set('@libs', resolve('src/libs'))
             .set('@com', resolve('src/components'))
             .set('@pages', resolve('src/pages'))
+            .set('@util', resolve('src/util'))
+            .set('@c', resolve('src/components'))
             
     }
 }
