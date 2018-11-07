@@ -1,96 +1,108 @@
-
 <template>
+    <section class="app-nav">
+        <div class="app-nav_bg">
+            <div class="nav-city">
+                <span class="nav-city-name">武汉</span>
+                <span class="nav-city_arrow"></span>
+            </div>  
+            <div class="nav-switch_hot" data-active=".n-hot">
+                <div class="nav-hot_item active" data-tab=".n-hot">正在热映</div>
+                <div class="nav-hot_item " data-tab=".f-hot">即将上映</div>
+            </div>
+            <div class="nav-search_icon" data-type="movie">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAABC1JREFUWAntWEtrU1EQPpO+ArYm1Y1I3VRXgu5EoSpVQaxCxUVxYTeCv8CtoFVxW0F/gBsLiguxoBaxWHyLS0EEdWWobrRprZC+cpzv3NyTOfeR3DS3duOF5M6ZMzPflzmvOVHq/9NcBqhRdz001D43UziktR5k35382ao1bUUcIj3NL3w+EtH4xu6eZ3Tv3iL6VvskJjh/vH/Lcql0UZM6o7TamAiQ1BxpNdaazV7pfDT1I5FPwKguQT0w0FFcLF5QSp9nYhsC/smapP5wfkfz7flr9PjxQjInz6omQZO1hdJ9rdW+RoLG2RKpt60d2VONZDOW4PyRA7uX9NJDBuuJACzwhHuQ0ZmHPNe+dm1qxbxTv38t83zU28tUPqG0Phnn25ah451P33yIiBtSRRJE5pZKpfchAKJp0vpSbvO2Wzz5V0LRhIIXU8vsz29nNdFlJmsWkegutGWze5JkMkQQc252cWYqYljH850twzT+6rcAqivqwb6u4vzKbTbEqrcPhjvX3t1fb05mrEdFwIIIkSN1I3/w2KlGySEkfOCrVOamxAKGt/ikNiw7GTRDu1D6Elit44bcyEg57J5co0dGMsXnE/fZo5pJXt1tHdkdtYbaySD2OYcczzkzrE2Sw88gjoFYvLjMgjI/jbctg2ka0V+WIE4IswkLOyyI1QyrCOGIiIWYUglMYEudlC1BHF+BE6KA1SqN05ArMQs2Fp9KBtsqXMESrJyt1V7e5+ptJVXj5JKJybGlRwhbdFqCrMPBbx9swraRshAR28GWcJKgs5nihJCGacoRsR1siWUJ+iWT3+kfX347zXcwdhBbYlmCUrkOso7DtAQrxaa1w8FvGykLwdiM/T0OwhJkg+oGyg1UJXFOzeojYjvYMr4k+FF2mJJJKlKUI2I72BLKEsQdQnagnkPJ5OhSaJiYXq1oo4WwbQ+XGL6MC47iO4Tf5ncP6jnRTkWsxKwWwYxpsGOiW4K4feGCI+1QbKKek7pmZMQyBawIAkxgC5UjWoLQ4vbFWeQLTuXhShjFJkolX7Xatym3ULjK6pqxDGaNoA6wV5fRaMB+sPhi4nozJL1a8IlbCxoQGq1VC8LEKVih+Icl/2cu+Xc1XPLDAVdD5loticCcK+Hin/Kn4uF955KsbtjAFj7wNRGcL+qdW5wFTs0nlEHfeg2vnT4EF9e0QoqGc5Ov71hlQIglCLs1uLh/5lnVyyeJ3V9Bkne7M/nJV3cD3EzTWSRBA0xgXA35p151VnfQsF4bOwPHwJwDGY+U5+SRLY8Vj/SdjgpTM4PSwWQzpT+PPDLlsSSZTEzQJ8uTP5W/35KSbJigTzSNdxxJamnpyz15+Q4YNedgGiRqxfAWRnhO6pWy3ZbWlSDIR5EkpV/4P2xdh9gngffs0f17kTmQy02+mZB9/+VmMvAXE7/38O8tTYkAAAAASUVORK5CYII=" />  
+            </div>           
+        </div>
+    </section>
     
-    <div class="app-nav">
-        <transition 
-            enter-active-class="slideInLeft"
-            leave-active-class="slideOutLeft"
-        >
-            <nav class="nav-list animated" v-if = "show">
-                <ul class="nav-content">
-                    <li class="nav-item" 
-                        v-for = "item in navs"
-                        :key  = "item.id"
-                    >
-                        <a >
-                            <span>{{ item.title }}</span>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        
-                    </li>
-                </ul>
-                
-            </nav>
-        </transition>
-        <transition 
-            enter-active-class="fadeIn"
-            leave-active-class="fadeOut"
-        >
-            <div @click="$emit('update:show', false)" class="mask animated"  v-if = "show"></div>  
-        </transition>  
-    </div>
-
 </template>
 
 <script>
+
 export default {
-    data () {
-        return {
-            navs: [
-                { id: 1, title: '首页', path: '/' },
-                { id: 2, title: '影片', path: '/films' },
-                { id: 3, title: '我的', path: '/mine' }
-            ]
-        }
-    },
-    props: {
-        show: Boolean
-    }
-}
-
-
-
-
+  
+};
 </script>
 
-<style lang="scss">
-
-@import '../../stylesheets/particles/variable';
+<style lang="scss" >
 .app-nav {
-    .animated {
-        animation-duration: 0.5s;
+  flex: 0 0;
+  border-bottom: 1px solid #e6e6e6;
+  height: 1.173333rem;
+  .app-nav_bg {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 1.173333rem;
+    line-height: 1.173333rem;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    .nav-city {
+      font-size: 0.4rem;
+      color: #666;
+      padding-left: 0.4rem;
+      display: -webkit-box;
+      flex-grow: 1;
+      .nav-city-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 1.866667rem;
+      }
+      .nav-city_arrow {
+        width: 0;
+        height: 0;
+        border: 0.106667rem solid #b0b0b0;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        display: inline-block;
+        margin: 0.133333rem 0.133333rem 0;
+      }
     }
-    position: absolute;
-    z-index: -1;
-    height: auto;
-    top: 1.333333rem;
-    // padding-top: ;
-    .nav-list {
-        width: 7.066667rem;
-        border-top: 1px solid #222;
-        box-shadow: 0 1px 1px #363636 inset;
-        background:  $base-bg-color;
-        height: 100vh;
-        .nav-item {
-            height: 1.333333rem;
-            a {
-                padding: 0 .426667rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border-bottom: 1px dotted #333;
-                color: #9a9a9a;
-            }
+    .nav-switch_hot {
+      display: flex;
+      height: 1.173333rem;
+      line-height: 1.173333rem;
+      position: relative;
+      .nav-hot_item {
+        font-size: 0.4rem;
+        color: #666;
+        width: 2.133333rem;
+        text-align: center;
+        margin: 0 0.32rem;
+        font-weight: 700;
+        &.active {
+          color: #ef4238;
         }
-    }
-    .mask {
-        background: rgba(0,0,0,0.5);
+      }
+      &[data-active=".n-hot"]:after {
+        left: 0.32rem;
+      }
+      &[data-active=".f-hot"]:after {
+        right: 0.32rem;
+      }
+      &:after {
+        content: "";
+        display: block;
         position: absolute;
-        top: 0;
-        z-index: -1;
-        height: 100vh;
+        bottom: -0.013333rem;
+        width: 2.133333rem;
+        height: 0.026667rem;
+        background-color: #ef4238;
+        -webkit-transition: left 0.2s;
+        transition: left 0.2s;
+      }
     }
+    .nav-search_icon {
+      padding-right: 0.4rem;
+      text-align: right;
+      img {
+        width: 0.533333rem;
+        height: 0.533333rem;
+      }
+    }
+  }
 }
-
 </style>
 

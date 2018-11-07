@@ -1,14 +1,31 @@
 <template>
-    <div>
-        my
+    <div class="app-outerBox">
+        <section class="app-cinema">
+                my
+        </section> 
+        <app-fotter></app-fotter>  
     </div>
+    
 </template>
+
 <script>
-    export default {
-        
-    }
+//底部
+import AppFotter from "@com/layout/AppFotter";
+
+
+export default {
+  data() {
+    return {
+    };
+  },
+  components: {
+   
+    AppFotter,
+  }
+};
 </script>
-<style lang="scss">
+
+<style lang="scss" >
 
 </style>
 

@@ -23,19 +23,6 @@
                 <span :class="item.icon"></span>
                 <span class="app-fotter_itemName">{{item.title}}</span>
             </router-link>
-
-             <!-- <router-link active-class="active"  to="/home" class="app-fotter_item" >
-               <span class="app-fotter_itemIcon iconfont icon-dianying1"></span>
-                <span class="app-fotter_itemName">电影</span>
-             </router-link>
-            <router-link to="/cinema" class="app-fotter_item">
-                <span class="app-fotter_itemIcon iconfont icon-yingyuana"></span>
-                <span class="app-fotter_itemName">影院</span>
-            </router-link>
-            <router-link to="/my" class="app-fotter_item">
-                <span class="app-fotter_itemIcon iconfont icon-wode"></span>
-                <span class="app-fotter_itemName">我的</span>
-            </router-link> -->
         </div>    
     </div>
 </template>
@@ -60,6 +47,7 @@ export default {
 .app-fotter {
   position: relative;
   height: 1.293333rem;
+  flex: 0 0;
   .app-fotter_info {
     display: flex;
     align-items: center;
