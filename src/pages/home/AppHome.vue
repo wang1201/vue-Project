@@ -1,35 +1,32 @@
 <template>
     <section class="app-home">
-       <ul >
-           <li class="movie-list after-border">
-               <a class="movie-list_item">
-                    <div class="movie-item_img">
-                        <img src="https://p0.meituan.net/128.180/movie/2721b55eac3ca107bad2af0e18592003431446.jpg" onerror="this.style.visibility='hidden'">
-                    </div>
-                    <div class="movie-item_info">
-                        <div class="movie-item_title">
-                            <div class="line-ellipsis">胡桃夹子和四个王国  <span class="version v3d imax"></span></div>             
-                        </div>
-                        <div class="movie-detail_column">
-                            <div class="line-ellipsis"> 
-                              <span>观众评 </span>
-                              <span class="grade">7.9</span>
-                            </div>
-                            <div class="line-ellipsis">主演: 麦肯吉·弗依,摩根·弗里曼,凯拉·奈特莉</div>
-                            <div class="line-ellipsis">今天294家影院放映3417场</div>
-                        </div>         
-                    </div>
-                     <div class="movie-btn_normal">
-                        <span class="btn-buy_ticket" data-bid="">购票</span>
-                    </div>
-               </a>
-           </li>
-       </ul>
+      <app-home-filem-box
+        v-for="item in film_types"
+        :key="item.id"
+        :id="item.url"
+      >
+      </app-home-filem-box>
+       
     </section>
 </template>
 
 <script>
-export default {};
+import AppHomeFilemItem from "@com/common/app-home/AppHomeFilmItem";
+import AppHomeFilemBox from "@com/common/app-home/AppHomeFilmBox";
+export default {
+  data() {
+    return {
+      film_types: [
+        { id: 1, url: "movieOnInfoList", title: "正在热映" },
+        { id: 2, url: "comingList", title: "即将上映" }
+      ]
+    };
+  },
+  components: {
+    AppHomeFilemBox,
+    AppHomeFilemItem
+  }
+};
 </script>
 
 <style lang="scss" >
