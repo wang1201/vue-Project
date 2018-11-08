@@ -34,6 +34,7 @@ export default {
         element.getNewDateTile = titleArray[i];
       }
     });
+    console.log(this.films);
   },
   methods: {
     getNewDateTitle() {
