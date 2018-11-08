@@ -143,3 +143,64 @@ const app = new Vue({
 #### <router-link to="/cinema">点击跳转</router-link>to为切换的路由router-link 处于选中状态时，vueRouter 会自动添加这个类
 
 ### <router-view></router-view>//根据路由的变化要动态切换显示的区域
+
+
+
+
+
+接口：代理服务器 vue.config.js:
+    devServer: {
+      port: 8000,
+      proxy:{
+        '/my':{
+          target:' http://m.maoyan.com/',
+          changeOrigin:true,
+          pathRewrite:{
+            '^/my':'',
+          }
+        }
+      }
+    },
+安装axios  -S
+vue2.0之后  尤玉溪就使用了axios代替原生jquery ajax
+
+
+想用axios的话 就需要在vue的原型上创建
+
+####封装一个,用于做成功还是失败的返回，这样就不用每次判断了
+####util->axios.js
+import axios from 'axios'
+//封装一个axios的ajax的请求
+//vue2.0之后就推荐使用axios了,抛弃了jquery ajax
+const ajax = (options)=>{
+    let _react = options.react = undefined ? true : options.react;
+    return axios(options)
+    .then(res=>{
+        if(res){
+            if (_react) console.log('数据获取成功')
+        }else{
+            if (_react) console.log('数据获取失败')
+        }
+    }).catch((error)=>{
+        console.log(error);
+        return false
+        
+    })
+}
+export default ajax
+
+###   main.js里引入了 import '@libs'//相当于libs/index.js
+
+#####libs/index.js
+
+import Vue from 'vue'
+// axios
+import ajax from '@util/axios'
+//bus
+import bus from '@util/bus'
+vue.prototype.$http = ajax;
+vue.prototype.$bus = bus;
+
+
+
+#####bus用于做emit on  eventEmitter事件监听

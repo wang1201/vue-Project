@@ -3,13 +3,22 @@
 @import './particles/variable';
 @import './particles/mixins';
 @import './particles/reset'; 
+*{
+    box-sizing: border-box;
+}
 body{
     display: flex;
     justify-content: space-between;
 }
-*{
-    box-sizing: border-box;
+html,body,main,#app{
+    height: 100%;
 }
+.app-outerBox{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .router-link-exact-active span,
 .router-link-active span{ //.router-link-active 指定
     color: #f03d37;
