@@ -3,41 +3,38 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    
+
     <main>
       <router-view></router-view>
     </main>
-    
+
   </div>
+
 </template>
 
 
 <script>
 //头部公共的布局组件
-import AppHeader from '@com/layout/AppHeader'
-
+import AppHeader from "@com/layout/AppHeader";
 
 export default {
     //别名，有名字的组件有更友好的警告信息。组件在全局用 Vue.component() 注册时，全局 ID 自动作为组件的 name。
-    name: 'app',
+    name: "app",
     components: {
-      AppHeader,
-     
+        AppHeader
     }
-}
-
+};
 </script>
 
-<style lang="scss">//lang相当于language指定是css scss 还是stylus
-  #app{
+<style lang="scss">
+//lang相当于language指定是css scss 还是stylus
+#app {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  main {
-   flex: 1 1;
-   overflow: scroll;
-  }
-
-
+}
+main {
+    flex: 1 1;
+    overflow: scroll;
+}
 </style>

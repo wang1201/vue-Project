@@ -7,6 +7,9 @@ vue.use(VueRouter); //全局挂载router，全局路由，保证每个都能用�
 //一级路由
 import appHome from '@pages/home/AppHome'
 import appCinema from '@pages/cinema/AppCinema'
+
+import AppCinemaDetails from '@pages/cinemaDetails/AppCinemaDetails'
+
 import notFound from '@pages/not-found/NotFound'
 import my from '@pages/my/AppMy'
 
@@ -35,8 +38,13 @@ const routes = [{
     }]
 }, {
     path: '/cinema',
-    name: 'cinema',
-    component: appCinema
+    name: 'cinema', 
+    component: appCinema 
+},{
+    path: '/cinema-details/:id',
+    name: 'cinema-details', 
+    component: AppCinemaDetails,
+    props: true
 }, {
     path: '/my',
     name: 'my',

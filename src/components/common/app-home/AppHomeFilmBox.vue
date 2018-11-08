@@ -39,6 +39,7 @@ export default {
   methods: {
     getNewDateTitle() {
       let temp = [];
+      console.log(this.films);
       this.films.forEach(element => {
         if (element.comingTitle) {
           element.getNewDateTile = "";

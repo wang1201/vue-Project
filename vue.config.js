@@ -9,6 +9,7 @@ function resolve(url) {
 }
 
 
+
 module.exports = {
     devServer: {
       port: 8000,
@@ -31,6 +32,7 @@ module.exports = {
             .set('@com', resolve('src/components'))
             .set('@pages', resolve('src/pages'))
             .set('@util', resolve('src/util'))
+           
             
     }
 }
