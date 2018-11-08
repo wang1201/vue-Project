@@ -1,6 +1,6 @@
 <template>
     <div class="app-outerBox">
-        <app-nav></app-nav>
+        <!-- <app-nav></app-nav> -->
         <section class="app-cinema">
                    影院
         </section> 
