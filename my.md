@@ -204,3 +204,21 @@ vue.prototype.$bus = bus;
 
 
 #####bus用于做emit on  eventEmitter事件监听
+
+
+
+####//全局路由实例 $router对象，是router构造方法的实例，main.js中new VueRouter出来的
+//$route当前的激活的路由的状态信息，通常用于：
+//1.组件内：this.$route 2.$route观察者回调内router.match(location)的返回值
+//3.路由守卫/导航守卫的参数 router.beforeEach((to, from, next) => {// to 和 from 都是 路由信息对象})
+//watch: {$route(to, from) {// to 和 from 都是 路由信息对象}}
+
+###//路由跳转的时候，做一些权限判断或者是其他的操作，于是就需要使用路由的钩子函数
+###全局路由
+//Vue.beforeEach(function(to,from,next){})在跳转之前执行
+//Vue.afterEach(function(to,from){})在跳转之后判断
+//to:router即将进入的路由对象
+//from：当前导航即将离开的路由
+//next:Function进行管道中的一个钩子，执行完状态为confirmed，否则为false
+//afterEach函数不用传next()函数
+###单个路由
