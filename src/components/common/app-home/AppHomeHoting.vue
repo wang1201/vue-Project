@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       film_types: [
-        { id: 1, url: "movieOnInfoList", title: "正在热映" }
+        { id: 1, url: "movieOnInfoList", title: "正在热映"}
         // { id: 2, url: "comingList", title: "即将上映" }
       ]
     };
