@@ -26,8 +26,9 @@
             </div>
 
             <div class="movie-btn_normal">
-                <span v-if="info.globalReleased" class="btn-buy_ticket" data-bid="">购票</span>
-                 <span v-else class="btn-buy_ticket btn-subscribe_ticket" data-bid="">预售</span>
+                <span v-if="info.showst == '3'" class="btn-buy_ticket" data-bid="">购票</span>
+                <span v-else-if="info.showst == '4'" class="btn-buy_ticket btn-subscribe_ticket" data-bid="">预售</span>
+                <span v-else-if="info.showst == '1'" class="btn-buy_ticket btn-want-look" data-bid="">想看</span>
             </div>
         </a>
     </li>
@@ -134,13 +135,12 @@ export default {
       .btn-subscribe_ticket {
         background-color: #3c9fe6;
       }
+      .btn-want-look{
+        background-color: #faaf00;
+      }
     }
   }
-  .line-ellipsis {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+  
 }
 </style>
 

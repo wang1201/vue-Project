@@ -4,42 +4,44 @@
         <app-home-film-item
             v-for = "film in films"
             :key  = "film.id"
-            :title  = 'film.comingTitle'
             :info = "film"
         ></app-home-film-item>
     </ul>
 </template>
 <script>
 import AppHomeFilmItem from "@com/common/app-home/AppHomeFilmItem";
+import scroll from '@util/scroll'
+
+
+
 export default {
   components: {
     AppHomeFilmItem
   },
-  props: ["filmType"],
+  props: ["url","type"],
   data() {
     return {
-      films: []
+      films: [],
+      page: 1, // 页数
+      hasMore: true // 是否还有更多
     };
   },
   async created() {
-    let { url } = this.filmType;
     let results = await this.$http({
-      url: "/my/ajax/" + url
+      url: "/my/ajax/" + this.url
     });
     this.films = results.movieList ? results.movieList : results.coming;
-   
+
    let titleArray = this.getNewDateTitle();
     this.films.forEach((element, i) => {
       if (element.comingTitle) {
         element.getNewDateTile = titleArray[i];
       }
     });
-    console.log(this.films);
   },
   methods: {
     getNewDateTitle() {
       let temp = [];
-      console.log(this.films);
       this.films.forEach(element => {
         if (element.comingTitle) {
           element.getNewDateTile = "";

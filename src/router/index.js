@@ -31,7 +31,7 @@ const routes = [{
         path: 'hotShowing',
         name: 'hotShowing', 
         component: appHomeHoting, 
-    },{//即将上映
+    },{//即将上映      
         path: 'comingSoon',
         name: 'comingSoon', 
         component: appHomeComing, 

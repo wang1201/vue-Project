@@ -3,7 +3,8 @@
          <app-home-filem-box
             v-for="item in film_types"
             :key="item.id"
-            :filmType = "item"
+            :url = "item.url"
+            :type = "item.type"
             >
         </app-home-filem-box>
      </div>
@@ -20,7 +21,7 @@ export default {
   data() {
     return {
       film_types: [
-        { id: 1, url: "movieOnInfoList", title: "正在热映"}
+        { id: 1, url: "movieOnInfoList", title: "正在热映",type:'hoting'}
         // { id: 2, url: "comingList", title: "即将上映" }
       ]
     };
@@ -28,7 +29,12 @@ export default {
   components: {
     AppHomeFilemBox,
     AppHomeFilemItem,
-  }
+  },
+  methods:{
+        backTop (e) {
+            this.$refs.list.backTop()
+        }
+    },
 };
 </script>
 

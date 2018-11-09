@@ -1,6 +1,6 @@
 <template>
     <section class="app-nav">
-        <div class="app-nav_bg">
+        <div class="app-nav_bg after-border">
             <div class="nav-city">
                 <span class="nav-city-name">武汉</span>
                 <span class="nav-city_arrow"></span>

@@ -32,6 +32,11 @@ export default {
 .app-home {
   flex-grow: 1;
   overflow: scroll;
+  .line-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 </style>
 
