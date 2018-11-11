@@ -12,7 +12,6 @@ const ajax = (options)=>{
         }
         return res.data
     }).catch((error)=>{
-        console.log(error);
         return false
         
     })

@@ -1,7 +1,7 @@
 // home的列表的实际字段
 <template>
-     <li class="movie-list" data-id = 'info.id'>
-       <p class="movie-group-date" v-if="info.comingTitle">{{info.getNewDateTile}}</p>
+     <div class="movie-list" :data-id = "info.id">
+       <!-- <p class="movie-group-date" v-if="info.comingTitle">{{info.getNewDateTile}}</p> -->
         <a class="movie-list_item after-border">
             <div class="movie-item_img">
                 <img :src="info.img | changeImg('128.180') " onerror="this.style.visibility='hidden'">
@@ -11,11 +11,11 @@
                     <div class="line-ellipsis">{{info.nm}}  <span :class="info.version" class="version"></span></div>             
                 </div>
                 <div class="movie-detail_column">
-                    <div class="line-ellipsis" v-if="info.globalReleased"> 
+                    <div class="line-ellipsis first-ellipsis" v-if="info.globalReleased"> 
                         <span>观众评 </span>
                         <span class="grade">{{info.sc}}</span>
                     </div>
-                    <div class="line-ellipsis" v-else> 
+                    <div class="line-ellipsis first-ellipsis" v-else> 
                         <span class="grade">{{info.wish}}</span>
                         <span>人想看</span>
                     </div>
@@ -31,24 +31,18 @@
                 <span v-else-if="info.showst == '1'" class="btn-buy_ticket btn-want-look" data-bid="">想看</span>
             </div>
         </a>
-    </li>
+    </div>
 </template>
 <script>
 export default {
-  props: ["info"],  
-  
+  props: ["info"]
 };
 </script>
 <style lang="scss">
 .movie-list {
   position: relative;
   // border-bottom: .013333rem solid #666;
-  .movie-group-date {
-    padding: 0.32rem 0.4rem 0;
-    margin: 0;
-    font-size: 28px;
-    color: #333;
-  }
+  height: 3.2rem;
   .movie-list_item {
     padding: 0.373333rem;
     display: flex;
@@ -105,9 +99,14 @@ export default {
       .movie-detail_column {
         font-size: 0.346667rem;
         color: #666;
+        height: auto;
         div {
           margin-top: 0.16rem;
           line-height: 0.4rem;
+          height: 0.4rem;
+          &.first-ellipsis{
+             margin-top: 0;
+          }
           .grade {
             font-weight: 700;
             color: #faaf00;
@@ -135,12 +134,11 @@ export default {
       .btn-subscribe_ticket {
         background-color: #3c9fe6;
       }
-      .btn-want-look{
+      .btn-want-look {
         background-color: #faaf00;
       }
     }
   }
-  
 }
 </style>
 

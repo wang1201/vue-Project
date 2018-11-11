@@ -1,7 +1,7 @@
 <template>
  <div class="awaite-box">
 	  <p class="awaite-box_title">近期最受期待</p>
-    <div class="awaite-box_info"  ref="tabWrapper">
+    <div class="awaite-box_info"  ref="tabWrapper" id="awaite-box_info">
         <div class="await-expected_list">
            <app-home-awaiting-item
              v-for="item in itemList"
@@ -17,8 +17,8 @@
   
   </template>
   <script>
-import BScroll from "better-scroll";
 import AppHomeAwaitingItem from "@com/common/app-home/AppHomeAwaitingItem";
+import { scroll } from "@util/scrolls";
 
 export default {
   data() {
@@ -31,29 +31,39 @@ export default {
       url: "/my/ajax/mostExpected"
     });
     this.itemList = results.coming;
-    this.$nextTick(() => {
-      this.InittabWrapperScroll();
-    });
+    // this.$nextTick(() => {
+    //   this.InittabWrapperScroll();
+    // });
+
+    // 横向scroll
+    scroll({
+      el: '#awaite-box_info',
+      data: this.itemList,
+      horizontal: true,
+      paging: results.paging,
+      url: '/my/ajax/mostExpected',
+      vm: this
+    })
   },
   components: {
     AppHomeAwaitingItem
   },
   methods: {
-    InittabWrapperScroll() {
-      this.$nextTick(() => {
-        if (!this.scroll) {
-          this.scroll = new BScroll(this.$refs.tabWrapper, {
-            startX: 0,
-            click: true,
-            scrollX: true,
-            scrollY: false,
-            eventPassthrough: "vertical"
-          });
-        } else {
-          this.scroll.refresh();
-        }
-      });
-    }
+    // InittabWrapperScroll() {
+    //   this.$nextTick(() => {
+    //     if (!this.scroll) {
+    //       this.scroll = new BScroll(this.$refs.tabWrapper, {
+    //         startX: 0,
+    //         click: true,
+    //         scrollX: true,
+    //         scrollY: false,
+    //         eventPassthrough: "vertical"
+    //       });
+    //     } else {
+    //       this.scroll.refresh();
+    //     }
+    //   });
+    // }
   }
 };
 </script>
@@ -61,16 +71,20 @@ export default {
 .awaite-box {
   background-color: #fff;  
   overflow: hidden;
+  height: 5.733333rem;
   .awaite-box_title {
     padding: 0.4rem 0 0 0.4rem;
     margin: 0 0 0.3rem;
     font-size: 0.373333rem;
     color: #333;
+    height:.893333rem ;
   }
   .awaite-box_info {
     width: 9.2rem;
+    height: 4.28rem;
     overflow: hidden;
-        padding: 0 0.4rem;
+    padding: 0 0.4rem;
+    margin: auto;
     .await-expected_list {
       display: inline-block;
       width: initial;
@@ -138,11 +152,13 @@ export default {
         font-size: 0.346667rem;
         color: #222;
         font-weight: 700;
+        height: .466667rem;
       }
       .await-expected_date {
         margin: 0;
         font-size: 0.32rem;
         color: #999;
+        height: .413333rem;
       }
     }
   }
