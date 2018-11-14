@@ -1,8 +1,9 @@
 import { Toast } from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
 import BScroll from 'better-scroll'
 import ajax from '@util/axios'
 import _ from 'lodash'
-// console.log(this.$http);
 export const scroll = ({
   el,
   data,
@@ -54,8 +55,6 @@ export const scroll = ({
     }
 
     if ( count == movieIds.length ) {
-      console.log('sdwsdsdras');
-      
       Toast({
         message: '没有更多数据啦~~',
         position: 'bottom',
