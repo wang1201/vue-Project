@@ -44,7 +44,7 @@ export default {
     },
     methods:{
         changeCity({id ,nm}){
-            console.log(id,nm);
+            console.log(id,nm);   
         }
     }
 }

@@ -58,7 +58,7 @@ export default {
       color: #666;
       padding-left: 0.4rem;
       display: -webkit-box;
-      flex-grow: 1;
+      // flex-grow: 1;
       .nav-city-name {
         white-space: nowrap;
         overflow: hidden;
