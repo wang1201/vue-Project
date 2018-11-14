@@ -5,8 +5,7 @@
                 <!-- <span class="nav-city-name">武汉</span> -->
                 <!-- tag 就是指该部分渲染的时候挂载的标签名 不然router默认为a标签-->
                  <router-link tag = "span" :to="{name: 'citis'}" class="nav-city-name">
-                    武汉
-                    <!-- {{chunks.city ? chunks.city.cityName : ''}} -->
+                    {{chunks.city ? chunks.city.cityName : ''}}
                 </router-link>
                 <span class="nav-city_arrow"></span>
             </div>  
@@ -28,15 +27,38 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+//因为定位是已进入页面就有了的，因此，初始化的时候就要有请求一次actions了，
 export default {
   data() {
+     console.log(this.$store.state.chunks);
     return {
       navs: [
         { id: 'nav01', title: "正在热映" , name:'hotShowing' },
         { id: 'nav02', title: "即将上映", name:'comingSoon' },
       ]
     };
-  }
+  },
+  //  beforeCreate () {
+  //       // 一进来就先去定位更改城市信息, 如果有保存的，就别获取去了
+  //       if ( localStorage.city ) {
+  //           this.$store.commit({
+  //               type: 'chunks/' + CHANGE_CITY,
+  //               cities: JSON.parse(localStorage.cities),
+  //               city: JSON.parse(localStorage.city)
+  //           })
+  //       } else {
+  //           this.$store.dispatch({type: 'chunks/getCurrentPosition'})
+  //       }     
+  //   },
+  //初始化页面的时候就要执行一下这个函数，进行定位
+  beforeCreate(){
+    this.$store.dispatch({
+      type:'chunks/getCurrentPosition'
+    })
+  },
+  computed:mapState(['chunks']),//// 映射 this.chunks 为 store.state.chunks
+
 };
 </script>
 
