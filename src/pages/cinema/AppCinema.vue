@@ -33,7 +33,7 @@ export default {
     async beforeCreate() {
         let result = await this.$http({
             url: "/my/ajax/cinemaList",
-            react: false
+    
         });
         this.cinemas = result.cinemas;
         console.log(result.cinemas);

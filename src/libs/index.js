@@ -13,6 +13,8 @@ import '@util/filters'
 import bus from '@util/bus'
 
 
+
+
 // 将VueAwemeSwiper中的多个组件注册为全局组件
 // Vue.use(VueAwesomeSwiper)
 Vue.use(VueAwesomeSwiper)
