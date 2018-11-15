@@ -29,10 +29,6 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      // activeCity: {
-      //   id: 12,
-      //   name: "北京"
-      // },
       hotCitys: [
         { id: 1, name: "北京" },
         { id: 10, name: "上海" },
