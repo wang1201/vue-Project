@@ -4,6 +4,7 @@ export default {
     [CHANGE_CITY]:(state,payload)=>{
         console.log('我是mutation 头');
         //拿到点击的最新的城市名字
+        console.log('00000',payload.city);
         state.city = payload.city;
        
         //为什么多写一个这个猫眼的城市列表数据，是因为页面初始化第一次请求就拿到数据，

@@ -31,7 +31,6 @@ import { mapState } from 'vuex'
 //因为定位是已进入页面就有了的，因此，初始化的时候就要有请求一次actions了，
 export default {
   data() {
-     console.log(this.$store.state.chunks);
     return {
       navs: [
         { id: 'nav01', title: "正在热映" , name:'hotShowing' },
@@ -56,6 +55,7 @@ export default {
     this.$store.dispatch({
       type:'chunks/getCurrentPosition'
     })
+     console.log('1111111',this.$store.state.chunks);
   },
   computed:mapState(['chunks']),//// 映射 this.chunks 为 store.state.chunks
 

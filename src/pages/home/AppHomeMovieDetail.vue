@@ -55,13 +55,20 @@
                 </li>
             </ul>
         </div>
-        
+        <app-ciname-list></app-ciname-list>
     </div>
 </template>
 <script>
+// import AppCinameList from '"@com/common/app-cinema/AppCinemaList'
+
 import BScroll from "better-scroll";
     export default {
-        created(){
+        data(){
+            return{
+
+            }
+        },
+       async created(){
             // 横向scroll
             // scroll({
             // el: '#awaite-box_info',
@@ -71,6 +78,33 @@ import BScroll from "better-scroll";
             // url: '/my/ajax/mostExpected?ci='+ this.$store.state.chunks.city.cityId,
             // vm: this
             // })
+            //  let results = await this.$http({
+            //     url: "/my/ajax/mostExpected",
+            //     params:{
+            //         ci:this.$store.state.chunks.city.cityId
+            //     }
+            // });
+            // let results =  await this.$http({
+            //     url:"/my/ajax/movie?forceUpdate=1542255099122",
+            //     data:{
+            //         movieId: '42964',
+            //         day: '2018-11-15',
+            //         offset: 0,
+            //         limit: 20,
+            //         districtId: -1,
+            //         lineId: -1,
+            //         hallType: -1,
+            //         brandId: -1,
+            //         serviceId: -1,
+            //         areaId: -1,
+            //         stationId: -1,
+            //         item:'' ,
+            //         updateShowDay: true,
+            //         reqId: 1542255096095,
+            //         cityId: 20,
+            //     }
+            // });
+            console.log(results);
         },
         mounted(){
             this.$nextTick(() => {
@@ -182,7 +216,7 @@ import BScroll from "better-scroll";
       padding: 0;
       margin: 0;
       white-space: nowrap;
-          width: fit-content;
+      width: fit-content;
       .showDay {
         display: inline-block;
         width: 3.066667rem;
