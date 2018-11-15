@@ -65,13 +65,14 @@ export default {
       // 纵向scroll
       // 因为路由有动画，需要播放300毫秒，
       // 因此此处需要加定时器，在300毫秒后创建scroll对象
+      console.log('12121',this.$store.state.chunks.city.cityId);
       setTimeout(() => {
         scroll({
             el: "#movie-list",
             data: this.films,
             horizontal: false,
             movieList: this.allResource,
-            url: "/my/ajax/moreComingList",
+            url: "/my/ajax/moreComingList?ci="+this.$store.state.chunks.city.cityId,
             vm: this
           });
       }, 300);

@@ -1,6 +1,6 @@
 // home的列表的实际字段
 <template>
-     <div class="movie-list" :data-id = "info.id">
+     <div  @click="getMovieDetail" class="movie-list" :data-id = "info.id">
        <!-- <p class="movie-group-date" v-if="info.comingTitle">{{info.getNewDateTile}}</p> -->
         <a class="movie-list_item after-border">
             <div class="movie-item_img">
@@ -35,7 +35,15 @@
 </template>
 <script>
 export default {
-  props: ["info"]
+  props: ["info"],
+  methods:{
+    getMovieDetail(){
+      // URL /search?q=vue 会将 {query: 'vue'} 作为属性传递给 SearchUser 组件。
+      //当 props 是静态的时候有用。
+       this.$router.push({ name: 'movieDetail',params: {id: this.info.id}, query: {  name: this.info.name } })
+    }
+  }
+  
 };
 </script>
 <style lang="scss">

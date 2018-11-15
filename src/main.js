@@ -4,7 +4,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'//引入路由配置
-// import store from './store'
+import store from '@/store'
 // 引入全局通用样式
 import '@styles/main.scss'
 
@@ -24,6 +24,6 @@ Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示�
 
 new Vue({
   router,//保证任何组件都可以用到
-  // store,
+  store,
   render: h => h(App)
 }).$mount('#app')

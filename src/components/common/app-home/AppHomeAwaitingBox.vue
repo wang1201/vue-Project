@@ -28,7 +28,10 @@ export default {
   },
   async created() {
     let results = await this.$http({
-      url: "/my/ajax/mostExpected"
+      url: "/my/ajax/mostExpected",
+      params:{
+        ci:this.$store.state.chunks.city.cityId
+      }
     });
     this.itemList = results.coming;
     // this.$nextTick(() => {
@@ -41,7 +44,7 @@ export default {
       data: this.itemList,
       horizontal: true,
       paging: results.paging,
-      url: '/my/ajax/mostExpected',
+      url: '/my/ajax/mostExpected?ci='+ this.$store.state.chunks.city.cityId,
       vm: this
     })
   },

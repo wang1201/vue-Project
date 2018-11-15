@@ -21,11 +21,11 @@ module.exports = {
             '^/my':'',
           }
         },
-        '/mz':{
-          target:' https://m.maizuo.com/',
+        '/bd':{
+          target:' http://api.map.baidu.com/',
           changeOrigin:true,
           pathRewrite:{
-            '^/mz':'',
+            '^/bd':'',
           }
         }
       }

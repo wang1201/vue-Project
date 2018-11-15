@@ -1,14 +1,16 @@
 <template>
     <section class="app-citys">
        <app-content-block title = "当前所在城市">
-           <app-content-item class="active">{{activeCity.name}}</app-content-item>
+           <app-content-item v-if="chunks.city" class="active">{{chunks.city.cityName}}</app-content-item>
        </app-content-block>
 
        <app-content-block title = "热门城市">
            <app-content-item 
                 v-for = "city in hotCitys"
                 :key  = "city.id"
-           >{{city.name}}
+                @click.native="changeCity(city)"
+           >
+           {{city.name}}
            </app-content-item>
        </app-content-block>
 
@@ -20,18 +22,19 @@
 import AppContentBlock from "@com/layout/AppContentBlock";
 import AppContentItem from "@com/layout/AppContentItem";
 import AppCitysContent from "@com/layout/AppCitysContent";
+
+import { CHANGE_CITY } from '@/store/chunks/mutation-types'
+
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      activeCity: {
-        id: 12,
-        name: "北京"
-      },
       hotCitys: [
-        { id: 12, name: "北京" },
-        { id: 13, name: "上海" },
-        { id: 14, name: "广州" },
-        { id: 15, name: "深圳" }
+        { id: 1, name: "北京" },
+        { id: 10, name: "上海" },
+        { id: 50, name: "杭州" },
+        { id: 20, name: "广州" },
+       
       ]
     };
   },
@@ -39,6 +42,19 @@ export default {
     AppContentBlock,
     AppContentItem,
     AppCitysContent
+  },
+  computed:mapState(['chunks']),//等同于this.chunks === store.state.chunks
+  methods:{
+    changeCity({id:cityId , name:cityName}){
+      this.$store.commit({
+        type:'chunks/CHANGE_CITY',
+        city:{
+          cityId,cityName
+        }
+      })
+      this.$router.push({name:'home'})
+    }
+    
   }
 };
 </script>

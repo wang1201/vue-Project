@@ -6,20 +6,25 @@ vue.use(VueRouter); //全局挂载router，全局路由，保证每个都能用�
 
 //一级路由
 import appHome from '@pages/home/AppHome'
-import appCinema from '@pages/cinema/AppCinema'
+//二级路由
+//正在热映
+import appHomeHoting from '@com/common/app-home/AppHomeHoting'
+//即将上映
+import appHomeComing from '@com/common/app-home/AppHomeComing'
 
+import appMovieDetail from '@com/common/app-home/AppMovieDetail'
+
+import appCinema from '@pages/cinema/AppCinema'
 import AppCinemaDetails from '@pages/cinema/AppCinemaDetails'
+
+
 
 import notFound from '@pages/not-found/NotFound'
 import my from '@pages/my/AppMy'
 import citis from '@pages/citis/AppCitis'
 
 
-//二级路由
-//正在热映
-import appHomeHoting from '@com/common/app-home/AppHomeHoting'
-//即将上映
-import appHomeComing from '@com/common/app-home/AppHomeComing'
+
 const routes = [{
     path: '/', //默认路径时 重定向
     redirect: '/home',
@@ -38,7 +43,13 @@ const routes = [{
         name: 'comingSoon', 
         component: appHomeComing, 
     }]
-}, {
+},  {
+    // props 被设置为 true，route.params 将会被设置为组件属性。也就是穿进来的那个id
+    path: '/movieDetail/:id',
+    name: 'movieDetail',
+    component: appMovieDetail,
+    props: true
+},{
     path: '/cinema',
     name: 'cinema', 
     component: appCinema 
@@ -47,8 +58,8 @@ const routes = [{
     name: 'cinema-details', 
     component: AppCinemaDetails,
     props: true
-}, {
-    path: '/my',
+},{
+   path: '/my',
     name: 'my',
     component: my
 },{

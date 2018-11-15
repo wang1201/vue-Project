@@ -60,11 +60,12 @@ export default {
     height: 1.466667rem;
     line-height:1.466667rem;
     text-align: center;
-    flex: 0 0;
+    // flex: 0 0;
     .page-title{
         h1{
             color: #ffffff;
             font-size: .48rem;
+             line-height:1.466667rem;
         }
     }
 }
