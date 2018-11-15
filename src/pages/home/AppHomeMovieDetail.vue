@@ -1,6 +1,6 @@
 <template>
     <div class="app-movie-detail">
-        <div class="movie-detail" data-bid="dp_wx_buy_movie">
+        <div class="movie-detail" data-bid="dp_wx_buy_movie" v-if="detailMovie">
             <div class="movie-filter"></div>
             <div class="poster-bg" style="background-image:url(//p0.meituan.net/71.100/movie/363e3a7e614d29b2847ff4e62afcd3f42168651.jpg)"></div>
             <div class="detail box-flex">
@@ -55,13 +55,21 @@
                 </li>
             </ul>
         </div>
-        
+        <!-- <app-ciname-list></app-ciname-list> -->
     </div>
 </template>
 <script>
+// import AppCinameList from '"@com/common/app-cinema/AppCinemaList'
+
 import BScroll from "better-scroll";
     export default {
-        created(){
+        props:['id'],
+        data(){
+            return{
+                detailMovie:[],
+            }
+        },
+       async created(){
             // 横向scroll
             // scroll({
             // el: '#awaite-box_info',
@@ -71,6 +79,32 @@ import BScroll from "better-scroll";
             // url: '/my/ajax/mostExpected?ci='+ this.$store.state.chunks.city.cityId,
             // vm: this
             // })
+            //  let results = await this.$http({
+            //     url: "/my/ajax/mostExpected",
+            //     params:{
+            //         ci:this.$store.state.chunks.city.cityId
+            //     }
+            // });
+            //第一部分电影详情内容
+            let result =  await this.$http({
+                url:"/my/ajax/detailmovie?movieId=" + this.id,
+            });
+            this.detailMovie = result.detailMovie;
+
+            let results =  await this.$http({
+                method:"post",
+                url:"/my/ajax/movie",
+                data:{
+                    movieId: '42964',
+                    day: '2018-11-15',
+                    offset: '0',
+                    limit: '20',
+                    updateShowDay: true,
+                    reqId: '1542255096095',
+                    cityId: '20',
+                }
+            });
+            console.log(results);
         },
         mounted(){
             this.$nextTick(() => {
@@ -182,7 +216,7 @@ import BScroll from "better-scroll";
       padding: 0;
       margin: 0;
       white-space: nowrap;
-          width: fit-content;
+      width: fit-content;
       .showDay {
         display: inline-block;
         width: 3.066667rem;

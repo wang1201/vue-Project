@@ -60,7 +60,7 @@ export default {
                 }
             });
             this.$router.push({name:'home'})
-            console.log(this.$store.state);
+            console.log('state',this.$store.state);
         }
     }
 }
