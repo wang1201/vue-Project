@@ -2,7 +2,10 @@
 <template>
     <header class="app-header">     
         <div class="page-title">
-            <a class="back" href="#" onclick="javascript: window.history.back();return false;"><i class="icon-back"></i></a>
+            <a v-if="!(this.$route.name == 'hotShowing' || this.$route.name == 'comingSoon'|| this.$route.name == 'cinema'|| this.$route.name == 'my')" 
+                class="back" href="#" onclick="javascript: window.history.back();return false;">
+               <i class="fa fa-angle-left"></i> 
+            </a>
             <h1>{{title}}</h1>
         </div> 
     </header>
@@ -65,12 +68,12 @@ export default {
     text-align: center;
     // flex: 0 0;
     .page-title{
-        // .back{
-        //     height: ;
-        //     width: 22.5px;
-        //     line-height: 50px;
-        //     padding: 0 15px;
-        // }
+        .back{
+            position: absolute;
+            font-size: .8rem;
+            color: #ffffff;
+            left: .4rem;
+        }
         h1{
             color: #ffffff;
             font-size: .48rem;

@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex"></div>
                 <div class="label-block">
-                         <!-- <div class="allowRefund" v-if="info.tag.allowRefund===1">退</div> -->
+                         <div class="allowRefund" v-if="info.tag.allowRefund===1">退</div>
                         <div class="endorse" v-if="info.tag.endorse===1">改签</div>
                         <div class="snack" v-if="info.tag.snack===1">小吃</div>
                         <div class="vipTag" v-if="info.tag.vipTag" >{{info.tag.vipTag}}</div>
