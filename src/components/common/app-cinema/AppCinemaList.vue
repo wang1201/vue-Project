@@ -16,10 +16,10 @@
                 </div>
                 <div class="flex"></div>
                 <div class="label-block">
+                         <div class="allowRefund" v-if="info.tag.allowRefund===1">退</div>
                         <div class="endorse" v-if="info.tag.endorse===1">改签</div>
                         <div class="snack" v-if="info.tag.snack===1">小吃</div>
                         <div class="vipTag" v-if="info.tag.vipTag" >{{info.tag.vipTag}}</div>
-                        <!-- v-for = "hallType in info.hallType"  -->
                         <div class="hallType"  v-if="info.tag.hallType" v-for = "hallType in info.tag.hallType"  :key  = "hallType.index">{{hallType}}</div>
                 </div>
                 <div class="discount-block" v-if="info.promotion.cardPromotionTag">
@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  props: ["info"]
+  props: ["info"],
   //    methods: {
   //       goToDetail () {
 
@@ -60,8 +60,8 @@ export default {
 }
 
 .app-cinemaList .item {
-  padding: 0.33rem 0;
-  margin: 0 0.4rem;
+  padding: 0.33rem 0.4rem;
+//   margin: 0 0.4rem;
   background-color: #fff;
   position: relative;
   overflow: hidden;
@@ -111,7 +111,7 @@ export default {
 }
 .app-cinemaList .location-block {
   margin-top: 0.16rem;
-  font-size: 0.32rem;
+  font-size: .346667rem;
   color: #666;
   display: flex;
   justify-content: space-between;
@@ -119,7 +119,7 @@ export default {
 .app-cinemaList .title-block .label-block {
   line-height: 0.453333rem;
   margin-top: 0.106667rem;
-  margin-bottom: 0.106667rem;
+//   margin-bottom: 0.106667rem;
   overflow: hidden;
   font-size: 0;
   flex-shrink: 0;
@@ -133,7 +133,7 @@ export default {
   border: 1px solid #f90;
 }
 .title-block .label-block .hallType,
-.endorse {
+.endorse,.allowRefund {
   color: #589daf;
   border: 1px solid #589daf;
 }
