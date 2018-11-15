@@ -38,7 +38,6 @@ export default {
     methods: {
         titleInit (to) {
             let _to = to || this.$route
-            console.log(_to)
             switch ( _to.name ) {
                 case 'cinema': return '影院';
                 case 'detail': return _to.query.name;

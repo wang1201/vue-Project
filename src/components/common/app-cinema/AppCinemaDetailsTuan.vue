@@ -2,8 +2,9 @@
 
  
 
-    <section class="app-cinema-details-tuan tuan-list">
+    <section class="app-cinema-details-tuan ">
         <div class="gap" ></div>
+        <div class="tuan-list">
 	<div class="tuan-title mb-line-b">影院超值套餐</div>
 	
 	<div class="tuan-item mb-line-b">
@@ -28,7 +29,7 @@
 			<div class="buy-btn">去购买</div>
 		</div>
 	</div>
-
+</div>
     </section>
 </template>
 
@@ -46,7 +47,7 @@ export default {
     position: relative;
     margin: 0 0 0 .4rem;
 }
-.tuan-list .gap{
+ .gap{
  height:.266667rem;
   background-color: #f0f0f0
 }
@@ -124,7 +125,7 @@ export default {
 .tuan-item .item-info .price .sell-price .num {
     font-size: .453333rem;
 }
-.tuan-wrap .tuan-list .tuan-item .item-info .buy-btn {
+ .tuan-list .tuan-item .item-info .buy-btn {
     position: absolute;
     right: 0;
     bottom: 0;

@@ -1,37 +1,40 @@
 <template>
-     <div>
-         <app-home-filem-box
-            v-for="item in film_types"
-            :key="item.id"
-            :filmType = "item"
-            >
-        </app-home-filem-box>
-     </div>
-    
+    <app-home-filem-box :allResource = "allHotResults" id="movie-list" >
+    </app-home-filem-box> 
 </template>
 
 <script>
 //ul
 import AppHomeFilemBox from "@com/common/app-home/AppHomeFilmBox";
-//item
-import AppHomeFilemItem from "@com/common/app-home/AppHomeFilmItem";
 
 export default {
   data() {
     return {
-      film_types: [
-        { id: 1, url: "movieOnInfoList", title: "正在热映"}
-        // { id: 2, url: "comingList", title: "即将上映" }
-      ]
+      allHotResults:[]
     };
   },
   components: {
     AppHomeFilemBox,
-    AppHomeFilemItem,
-  }
+  },
+  async created() {
+    let results = await this.$http({
+      url: "/my/ajax/movieOnInfoList"
+    });
+    //整体数据，用于做scroll的时候取出来movieIds拼接
+    this.allHotResults = results;
+  },
+  methods:{
+      backTop (e) {
+          this.$refs.list.backTop()
+      }
+  },
+  
 };
 </script>
 
 <style lang="scss" >
+  #movie-list{
+    height: -webkit-fill-available;
+  }
 </style>
 

@@ -1,6 +1,7 @@
 <template>
     <section class="app-cinema-details-title">
         <div class="cinema-nav swiper-container swiper-container-horizontal">
+            <img class="post-bg"  :src="cinemas.img | changeImg('148.108') "/>
             <div class="post-bg-filter"></div>
             <swiper :options="swiperOption" ref="mySwiper">
 
@@ -23,12 +24,13 @@
         <app-cinema-details-tuan>
 
         </app-cinema-details-tuan>
+   
     </section>
 </template>
 
 <script>
-import AppCinemaDetailsInfo from "@com/common/app-cinema-details/AppCinemaDetailsInfo";
-import AppCinemaDetailsTuan from "@com/common/app-cinema-details/AppCinemaDetailsTuan";
+import AppCinemaDetailsInfo from "@com/common/app-cinema/AppCinemaDetailsInfo";
+import AppCinemaDetailsTuan from "@com/common/app-cinema/AppCinemaDetailsTuan";
 export default {
     props: ["info"],
     components: {
@@ -82,6 +84,18 @@ export default {
 <style lang="scss" >
 .img-item {
     height: 2.906667rem;
+}
+ .cinema-nav .post-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+    -webkit-filter: blur(30px);
+    filter: blur(30px);
+    background-position-y: 40%;
 }
 .swiper-slide .post img {
     height: 2.533333rem;

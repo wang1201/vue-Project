@@ -1,6 +1,8 @@
 import axios from 'axios'
 //封装一个axios的ajax的请求
 //vue2.0之后就推荐使用axios了,抛弃了jquery ajax
+axios.defaults.withCredentials = true;// 设置携带cookie
+
 const ajax = (options)=>{
     let _react = options.react === undefined ? true : options.react;
     return axios(options)
@@ -12,7 +14,6 @@ const ajax = (options)=>{
         }
         return res.data
     }).catch((error)=>{
-        console.log(error);
         return false
         
     })

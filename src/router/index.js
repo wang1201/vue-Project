@@ -8,10 +8,12 @@ vue.use(VueRouter); //全局挂载router，全局路由，保证每个都能用�
 import appHome from '@pages/home/AppHome'
 import appCinema from '@pages/cinema/AppCinema'
 
-import AppCinemaDetails from '@pages/cinemaDetails/AppCinemaDetails'
+import AppCinemaDetails from '@pages/cinema/AppCinemaDetails'
 
 import notFound from '@pages/not-found/NotFound'
 import my from '@pages/my/AppMy'
+import citis from '@pages/citis/AppCitis'
+
 
 //二级路由
 //正在热映
@@ -31,7 +33,7 @@ const routes = [{
         path: 'hotShowing',
         name: 'hotShowing', 
         component: appHomeHoting, 
-    },{//即将上映
+    },{//即将上映      
         path: 'comingSoon',
         name: 'comingSoon', 
         component: appHomeComing, 
@@ -49,6 +51,10 @@ const routes = [{
     path: '/my',
     name: 'my',
     component: my
+},{
+    path: '/citis',
+    name: 'citis',
+    component: citis
 }, {
     path: '/not-found',
     name: 'not-found',

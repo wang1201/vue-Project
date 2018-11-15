@@ -1,8 +1,13 @@
 <template>
     <section class="app-nav">
-        <div class="app-nav_bg">
+        <div class="app-nav_bg after-border">
             <div class="nav-city">
-                <span class="nav-city-name">武汉</span>
+                <!-- <span class="nav-city-name">武汉</span> -->
+                <!-- tag 就是指该部分渲染的时候挂载的标签名 不然router默认为a标签-->
+                 <router-link tag = "span" :to="{name: 'citis'}" class="nav-city-name">
+                    武汉
+                    <!-- {{chunks.city ? chunks.city.cityName : ''}} -->
+                </router-link>
                 <span class="nav-city_arrow"></span>
             </div>  
             <router-link
@@ -53,7 +58,7 @@ export default {
       color: #666;
       padding-left: 0.4rem;
       display: -webkit-box;
-      flex-grow: 1;
+      // flex-grow: 1;
       .nav-city-name {
         white-space: nowrap;
         overflow: hidden;

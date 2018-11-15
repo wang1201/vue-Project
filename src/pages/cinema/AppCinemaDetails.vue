@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="id">
       <section class="app-cinema-details">
             <!-- 因为单线程 刚开始的时候从上往下加载 还没获取到info  所以先让 info为false 先不渲染 等获取到了数据在进行渲染 -->
             <div class="cinema-info" v-if="info">
@@ -15,12 +15,11 @@
 </template>
   
 <script>
-import AppCinemaDetailsTitle from "@com/common/app-cinema-details/AppCinemaDetailsTitle";
-export default {
+import AppCinemaDetailsTitle from "@com/common/app-cinema/AppCinemaDetailsTitle";
+export default { 
 components: {
      AppCinemaDetailsTitle
     },
-
     props: ["id"], //获取到ID
     data() {
         return {
@@ -28,15 +27,15 @@ components: {
         };
     },
     async created() {
+        console.log("11")
         let result = await this.$http({
             url: "/my/ajax/cinemaDetail",
             params: { cinemaId: this.id }, // ？ 后面跟的参数
    
         });
-        console.log(result);
         this.info = result;
 
-        // this.info.name
+       
     }
 };
 </script>

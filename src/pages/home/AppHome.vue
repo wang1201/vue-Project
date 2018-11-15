@@ -31,7 +31,12 @@ export default {
 <style lang="scss" >
 .app-home {
   flex-grow: 1;
-  overflow: scroll;
+  overflow: hidden;
+  .line-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 </style>
 

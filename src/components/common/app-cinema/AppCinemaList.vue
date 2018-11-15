@@ -1,6 +1,7 @@
 <template>
-    <section class="app-cinemaList" @click="goToDetail">
-        <div class="item " data-id="107">
+
+ <router-link tag="div" :to ="{name: 'cinema-details', params: {id: info.id},}" class="app-cinemaList">
+        <div class="item " :data-id='info.id'>
             <div class="title-block box-flex middle">
                 <div class="title line-ellipsis">
                     <span>{{info.nm}}</span>
@@ -37,28 +38,27 @@
                     <span class="time-line">{{info.showTimes}}</span>
 
                 </div>
-
             </div>
-
         </div>
-
-    </section>
+   </router-link>
 </template>
 
 <script>
 export default {
   props: ['info'],
-   methods: {
-      goToDetail () {
-        //   this.$router.push({ name: 'detail', params: { id: this.info.id } })
-          this.$router.push({ name: 'cinema-details',params: {id: this.info.id} })
-      }  
-    }
+//    methods: {
+//       goToDetail () {
+      
+//           this.$router.push({ name: 'cinema-details',params: {id: this.info.id} })
+//       }  
+//     }
 
 };
 </script>
 
 <style lang="scss" >
+.app-cinemaList {height:  3.293333rem}
+
 .app-cinemaList .item {
         padding: 0.346667rem 0;
         margin: 0 0.4rem;

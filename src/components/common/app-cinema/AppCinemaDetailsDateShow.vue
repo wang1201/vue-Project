@@ -93,13 +93,7 @@ export default {
         }
     }
 
-    // computed: {
-    //     groupedMovies() {
-    //         return _.groupBy(this.info.dateShow, item => {
-    //             return item;
-    //         });
-    //     }
-    // }
+
 };
 </script>
 
@@ -314,7 +308,7 @@ export default {
 .item .button-block .button {
     position: absolute;
     top: 50%;
-    transform: translateY(20%);
+    transform: translateY(-50%);
     width: 100%;
     height: 0.72rem;
     line-height: 0.746667rem;

@@ -34,7 +34,7 @@
 </template>
 <script>
 
-import AppCinemaDetailsDateShow from "@com/common/app-cinema-details/AppCinemaDetailsDateShow";
+import AppCinemaDetailsDateShow from "@com/common/app-cinema/AppCinemaDetailsDateShow";
 // import _ from "lodash";
 export default {
     props: ["info"],

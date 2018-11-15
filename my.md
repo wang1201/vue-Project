@@ -11,9 +11,9 @@
 
 1. 安装cli  npm i @vue/cli -g
 
-2. 初始化项目 vue create my-project || vue ui -> 开启可视化界面
+2. 初始化项目 vue create my-project || vue ui -> 开启可视化界面,选择第二个
 
-3. 选择配置: 
+3. 选择配置: 空格选中 
 
     babel -> js的编译。。。。
     linter -> 代码规范
@@ -22,6 +22,7 @@
     Vuex   -> 状态管理工具
     CSS pre.... -> css预处理 sass/less/stylus
     test  -> 做单元测试...
+    y->选择css格式
 ####main.js是默认的入口文件，main.js里面引入了App.vue
 
 
