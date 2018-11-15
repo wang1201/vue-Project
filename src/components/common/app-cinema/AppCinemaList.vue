@@ -1,5 +1,6 @@
 <template>
 
+<<<<<<< HEAD
  <router-link tag="div" :to ="{name: 'cinema-details', params: {id: info.id},}" class="app-cinemaList after-border" >
         <div class="item " :data-id='info.id'>
             <div class="title-block box-flex middle">
@@ -32,13 +33,49 @@
                 </div>
                 <div class="min-show-block disabled " v-if="info.showTimes">
                     <span>近期场次：</span>
+=======
+        <router-link tag="div" :to="{name: 'cinema-details', params: {id: info.id},}" class="app-cinemaList after-border">
+                <div class="item " :data-id='info.id'>
+                        <div class="title-block box-flex middle">
+                                <div class="title line-ellipsis">
+                                        <span>{{info.nm}}</span>
+                                        <span class="price-block">
+                                                <span class="price">{{info.sellPrice}}</span>
+                                                <span class="q">元起</span>
+                                        </span>
+                                </div>
+                                <div class="location-block box-flex">
+                                        <div class="flex line-ellipsis">{{info.addr}}</div>
+                                        <span class="distance">{{info.distance}}</span>
+                                </div>
+                                <div class="flex"></div>
+                                <div class="label-block">
+                                        <div class="endorse" v-if="info.tag.endorse===1">改签</div>
+                                        <div class="snack" v-if="info.tag.snack===1">小吃</div>
+                                        <div class="vipTag" v-if="info.tag.vipTag">{{info.tag.vipTag}}</div>
+                                        <!-- v-for = "hallType in info.hallType"  -->
 
-                    <span class="time-line">{{info.showTimes}}</span>
+                                        <div class="hallType" v-if="info.tag.hallType" v-for="hallType in info.tag.hallType" :key="hallType.index">{{hallType}}</div>
+>>>>>>> 326e939656ed19b6c737851ba31fa8ffd1eaee5a
 
+                                </div>
+                                <div class="discount-block" v-if="info.promotion.cardPromotionTag">
+                                        <div>
+                                                <div class="discount-label normal card">
+                                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAeCAYAAABNChwpAAAAAXNSR0IArs4c6QAAAgFJREFUSA3Nlz1LA0EQhmf3kouFEQwi+FEYQ+xEsImFoCDoL/CLaKd/QbC0sbCzFVuxsRS1jEVAsUqrIILRQAhaBGKMuawzwpGAm83mNhddCHfZnd3n3Z2ZuxsG2JI3YtQpVw6AiTkhYJj6/GqMwSsIdm312DsnMyzLCF79rGRAiIhfUOm6jL0FQvZU4Gfn0GU4KcINE5vjsc9LFXajE9kcfT7UDZaMQWwuG9Dpi/YyiIWZjqnSxrOAtWgANsYDysV1Bj0L0Flcx8ZoC1F0wf50UMo5fqjCY1FIxxo7jQSUHWgK+ag2YprfGwnIlQTQTk3a/46B2UEOIUu+v0gIIMgZLLTIZHJTOl+TL4K9ShckMc36Q+pc356QB6FLLJQFCqi4f39d2WoKLTy03ckg2OjAvcyXh9n1KX8eA0YC4n0MtuLoJru+o3bvjAS8o2vpfXCYsGEzZkFYHQ5SbcoglM5o6KQAoxhIDHBYiVqYERZcZB04f3aghNGv04wEuIDbQg3u8Lc4YsHymAVLeD17cuDypbWKjgggIZTpVwhM5x1YxzdlpaaXXB0T4J5GEbPy6F7/8WwUhC7U5OpZgIPfU5qnrNTn+UmoXLWNQc8n0AZDacqxUskpLXwcJDbHMinlI0O9NLI51WiAZZLa0odRZBKbU4FINRoDdtoNdxCDWMQk9jePWpE8hVOLbwAAAABJRU5ErkJggg==" alt="">
+                                                </div>
+                                                <div class="discount-label-text">{{info.promotion.cardPromotionTag}}</div>
+                                        </div>
+                                </div>
+                                <div class="min-show-block disabled " v-if="info.showTimes">
+                                        <span>近期场次：</span>
+
+                                        <span class="time-line">{{info.showTimes}}</span>
+
+                                </div>
+                        </div>
                 </div>
-            </div>
-        </div>
-   </router-link>
+        </router-link>
 </template>
 
 <script>

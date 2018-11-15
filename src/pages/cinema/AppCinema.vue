@@ -3,8 +3,8 @@
                 <!-- <app-nav></app-nav> -->
                 <div ref="root" class="app-cinema-item">
                     <div class="app-cinema">
-                            <app-cinemaList v-for="cinema in cinemas"
-                            :key="cinema.id" 
+                            <app-cinemaList v-for="(cinema,i) in cinemas"
+                            :key="i" 
                             :info="cinema"
                             ></app-cinemaList>
 
