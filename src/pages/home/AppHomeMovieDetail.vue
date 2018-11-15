@@ -55,7 +55,7 @@
                 </li>
             </ul>
         </div>
-        <app-ciname-list></app-ciname-list>
+        <!-- <app-ciname-list></app-ciname-list> -->
     </div>
 </template>
 <script>
@@ -63,9 +63,10 @@
 
 import BScroll from "better-scroll";
     export default {
+        props:['id'],
         data(){
             return{
-
+                detailMovie:[],
             }
         },
        async created(){
@@ -84,26 +85,25 @@ import BScroll from "better-scroll";
             //         ci:this.$store.state.chunks.city.cityId
             //     }
             // });
-            // let results =  await this.$http({
-            //     url:"/my/ajax/movie?forceUpdate=1542255099122",
-            //     data:{
-            //         movieId: '42964',
-            //         day: '2018-11-15',
-            //         offset: 0,
-            //         limit: 20,
-            //         districtId: -1,
-            //         lineId: -1,
-            //         hallType: -1,
-            //         brandId: -1,
-            //         serviceId: -1,
-            //         areaId: -1,
-            //         stationId: -1,
-            //         item:'' ,
-            //         updateShowDay: true,
-            //         reqId: 1542255096095,
-            //         cityId: 20,
-            //     }
-            // });
+            //第一部分电影详情内容
+            let result =  await this.$http({
+                url:"/my/ajax/detailmovie?movieId=" + this.id,
+            });
+            this.detailMovie = result.detailMovie;
+
+            let results =  await this.$http({
+                method:"post",
+                url:"/my/ajax/movie",
+                data:{
+                    movieId: '42964',
+                    day: '2018-11-15',
+                    offset: '0',
+                    limit: '20',
+                    updateShowDay: true,
+                    reqId: '1542255096095',
+                    cityId: '20',
+                }
+            });
             console.log(results);
         },
         mounted(){

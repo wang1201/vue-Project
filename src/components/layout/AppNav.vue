@@ -28,6 +28,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import { CHANGE_CITY } from '@/store/chunks/mutation-types'
+
 //因为定位是已进入页面就有了的，因此，初始化的时候就要有请求一次actions了，
 export default {
   data() {
@@ -38,25 +40,25 @@ export default {
       ]
     };
   },
-  //  beforeCreate () {
-  //       // 一进来就先去定位更改城市信息, 如果有保存的，就别获取去了
-  //       if ( localStorage.city ) {
-  //           this.$store.commit({
-  //               type: 'chunks/' + CHANGE_CITY,
-  //               cities: JSON.parse(localStorage.cities),
-  //               city: JSON.parse(localStorage.city)
-  //           })
-  //       } else {
-  //           this.$store.dispatch({type: 'chunks/getCurrentPosition'})
-  //       }     
-  //   },
+   beforeCreate () {
+        // 一进来就先去定位更改城市信息, 如果有保存的，就别获取去了
+        if ( localStorage.city ) {
+            this.$store.commit({
+                type: 'chunks/' + CHANGE_CITY,
+                cities: JSON.parse(localStorage.cities),
+                city: JSON.parse(localStorage.city)
+            })
+        } else {
+            this.$store.dispatch({type: 'chunks/getCurrentPosition'})
+        }     
+    },
   //初始化页面的时候就要执行一下这个函数，进行定位
-  beforeCreate(){
-    this.$store.dispatch({
-      type:'chunks/getCurrentPosition'
-    })
-     console.log('1111111',this.$store.state.chunks);
-  },
+  // beforeCreate(){
+  //   this.$store.dispatch({
+  //     type:'chunks/getCurrentPosition'
+  //   })
+  //    console.log('1111111',this.$store.state.chunks);
+  // },
   computed:mapState(['chunks']),//// 映射 this.chunks 为 store.state.chunks
 
 };
