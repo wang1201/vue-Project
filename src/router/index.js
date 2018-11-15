@@ -15,7 +15,7 @@ import appHomeComing from '@com/common/app-home/AppHomeComing'
 import appHomeMovieDetail from '@pages/home/AppHomeMovieDetail'
 
 import appCinema from '@pages/cinema/AppCinema'
-import AppCinemaDetails from '@pages/cinemaDetails/AppCinemaDetails'
+import AppCinemaDetails from '@pages/cinema/AppCinemaDetails'
 
 
 
@@ -59,7 +59,7 @@ const routes = [{
     component: AppCinemaDetails,
     props: true
 },{
-    path: '/my',
+   path: '/my',
     name: 'my',
     component: my
 },{

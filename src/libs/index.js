@@ -16,7 +16,7 @@ import bus from '@util/bus'
 import VueProgressBar from 'vue-progressbar'
 
 //懒加载
-import { Lazyload } from 'mint-ui';
+// import { Lazyload } from 'mint-ui';
 
 const options = {
   color: '#bffaf3',
