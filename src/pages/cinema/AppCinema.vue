@@ -47,7 +47,6 @@ export default {
         });
         this.cinemas = result.cinemas;
     },
-
     methods:{
        async  getFilms () {
              let result = await this.$http({
@@ -63,7 +62,7 @@ export default {
     },
     mounted() {
        scroll({
-           el:this.$refs.root,
+           el:this.$refs.root, 
             handler: this.getFilms.bind(this),
        }) 
     },

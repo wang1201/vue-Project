@@ -14,7 +14,8 @@ const scroll = ({
     })
     scroll.on('pullingUp', async()=>{
         await   handler()
-        scroll.refresh() // 重新计算
+        scroll.refresh() // 重新计算  防止添加之后不滚动
+        scroll.finishPullUp() // 解决拉动刷新 通知这次下拉完成 再次请求
     })
 
 

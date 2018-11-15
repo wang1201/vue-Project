@@ -27,7 +27,6 @@ components: {
         };
     },
     async created() {
-        console.log("11")
         let result = await this.$http({
             url: "/my/ajax/cinemaDetail",
             params: { cinemaId: this.id }, // ？ 后面跟的参数
