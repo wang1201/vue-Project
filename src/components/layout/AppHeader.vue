@@ -2,6 +2,7 @@
 <template>
     <header class="app-header">     
         <div class="page-title">
+            <a class="back" href="#" onclick="javascript: window.history.back();return false;"><i class="icon-back"></i></a>
             <h1>{{title}}</h1>
         </div> 
     </header>
@@ -37,10 +38,12 @@ export default {
     },
     methods: {
         titleInit (to) {
-            let _to = to || this.$route
+            let _to = to || this.$route;
+            console.log(_to);
             switch ( _to.name ) {
                 case 'cinema': return '影院';
-                case 'detail': return _to.query.name;
+                case 'movieDetail': return _to.query.name;
+                case 'cinema-details': return _to.query.name;
                 case 'my': return '我的';
                 default: return '猫眼电影';
             }
@@ -62,12 +65,19 @@ export default {
     text-align: center;
     // flex: 0 0;
     .page-title{
+        // .back{
+        //     height: ;
+        //     width: 22.5px;
+        //     line-height: 50px;
+        //     padding: 0 15px;
+        // }
         h1{
             color: #ffffff;
             font-size: .48rem;
              line-height:1.466667rem;
         }
     }
+    
 }
 </style>
 
