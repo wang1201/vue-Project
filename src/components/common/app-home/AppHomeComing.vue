@@ -30,29 +30,29 @@ export default {
     AppHomeAwaitingBox
   },
   async created() {
-    let cityId = this.$store.state.chunks.city.cityId;
-    console.log(cityId);
     let results = await this.$http({
-      url: "/my/ajax/comingList?ci=" 
+      url: "/my/ajax/comingList",
+      params:{
+        ci:this.$store.state.chunks.city.cityId
+      }
     });
     //整体数据，用于做scroll的时候取出来movieIds拼接
     this.allComResults = results;
-    console.log(this.$store.state.chunks.city);
   },
-  watch: {
-    '$store.state.chunks.city': {
-        immediate: true,//一进页面的时候就监听
-        handler (val) {
-          console.log(val.cityId,'我是id');
-            if ( !val.cityId ) return false
-            this.$http({
-                url: '/my/ajax/comingList?ci=' +''+ val.cityId,
-            }).then(results => {
-                this.allComResults = results;
-            })
-        }
-    }
-  },
+  // watch: {
+  //   '$store.state.chunks.city': {
+  //       immediate: true,//一进页面的时候就监听
+  //       handler (val) {
+  //         console.log(val.cityId,'我是id');
+  //           if ( !val.cityId ) return false
+  //           this.$http({
+  //               url: '/my/ajax/comingList?ci=' +''+ val.cityId,
+  //           }).then(results => {
+  //               this.allComResults = results;
+  //           })
+  //       }
+  //   }
+  // },
 };
 </script>
 

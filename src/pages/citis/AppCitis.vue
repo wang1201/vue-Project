@@ -34,10 +34,11 @@ export default {
       //   name: "北京"
       // },
       hotCitys: [
-        { id: 12, name: "北京" },
-        { id: 13, name: "上海" },
-        { id: 14, name: "广州" },
-        { id: 15, name: "深圳" }
+        { id: 1, name: "北京" },
+        { id: 10, name: "上海" },
+        { id: 50, name: "杭州" },
+        { id: 20, name: "广州" },
+       
       ]
     };
   },

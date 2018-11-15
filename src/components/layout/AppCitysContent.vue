@@ -52,7 +52,6 @@ export default {
     },
     methods:{
         changeCity({id:cityId, nm:cityName}){
-            console.log(this.$store.state.chunks);
             //需要把得到的这个id和name提交到仓库，仓库得到数据，调用接口刷新页面并且显示到主页
             this.$store.commit({
                 type:'chunks/'+CHANGE_CITY,
@@ -61,7 +60,7 @@ export default {
                 }
             });
             this.$router.push({name:'home'})
-
+            console.log(this.$store.state);
         }
     }
 }

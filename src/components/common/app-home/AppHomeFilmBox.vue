@@ -72,7 +72,7 @@ export default {
             data: this.films,
             horizontal: false,
             movieList: this.allResource,
-            url: "/my/ajax/moreComingList",
+            url: "/my/ajax/moreComingList?ci="+this.$store.state.chunks.city.cityId,
             vm: this
           });
       }, 300);

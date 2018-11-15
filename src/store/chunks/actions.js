@@ -20,16 +20,14 @@ const actions = {
                 ak: 'EajH3hpCLeGgNMbnPqbVl1Bm9PWGD0HO'
             }
         }, true);
-        console.log('是否可以定位到',result);//定位不到为false,定位到返回的是定位信息
+       // console.log('是否可以定位到',result);//定位不到为false,定位到返回的是定位信息
         if(result){
             cityName = result.content.address.replace('市','');//取到的是XX市，需要截取一下
             //拿到定位的城市，需要和得到的人家猫眼接口的城市名字对比，得到对应的猫眼接口的城市id
-            console.log(cityName);
             for(let i = 0; i<city.cts.length;i++){
                 if(city.cts[i].nm === cityName){//如果找到对应的城市name
                     // 这里不用forEach二用for的原因就是for可以找到就打断直接break
                     //而不用在遍历了
-                    console.log(city.cts[i].id);
                     cityId = city.cts[i].id;
                     break;
                 }
@@ -40,7 +38,6 @@ const actions = {
             city: { cityId, cityName },
             cities: city.cts//第一个进来初始化的时候，拿到猫眼接口的city所有数据,详情页就能直接在state上取
         })
-
     }
     
 }
