@@ -1,6 +1,6 @@
 <template>
 
- <router-link tag="div" :to ="{name: 'cinema-details', params: {id: info.id},}" class="app-cinemaList">
+ <router-link tag="div" :to ="{name: 'cinema-details', params: {id: info.id},}" class="app-cinemaList after-border" >
         <div class="item " :data-id='info.id'>
             <div class="title-block box-flex middle">
                 <div class="title line-ellipsis">
@@ -16,13 +16,11 @@
                 </div>
                 <div class="flex"></div>
                 <div class="label-block">
-                     <div class="endorse" v-if="info.tag.endorse===1">改签</div>
-                    <div class="snack" v-if="info.tag.snack===1">小吃</div>
-                    <div class="vipTag" v-if="info.tag.vipTag" >{{info.tag.vipTag}}</div>
-                    <!-- v-for = "hallType in info.hallType"  -->
-                   
-                         <div class="hallType"  v-if="info.tag.hallType" v-for = "hallType in info.tag.hallType"  :key  = "hallType.index">{{hallType}}</div>
-                    
+                        <div class="endorse" v-if="info.tag.endorse===1">改签</div>
+                        <div class="snack" v-if="info.tag.snack===1">小吃</div>
+                        <div class="vipTag" v-if="info.tag.vipTag" >{{info.tag.vipTag}}</div>
+                        <!-- v-for = "hallType in info.hallType"  -->
+                        <div class="hallType"  v-if="info.tag.hallType" v-for = "hallType in info.tag.hallType"  :key  = "hallType.index">{{hallType}}</div>
                 </div>
                 <div class="discount-block" v-if="info.promotion.cardPromotionTag">
                     <div >
@@ -45,131 +43,130 @@
 
 <script>
 export default {
-  props: ['info'],
-//    methods: {
-//       goToDetail () {
-      
-//           this.$router.push({ name: 'cinema-details',params: {id: this.info.id} })
-//       }  
-//     }
+  props: ["info"]
+  //    methods: {
+  //       goToDetail () {
 
+  //           this.$router.push({ name: 'cinema-details',params: {id: this.info.id} })
+  //       }
+  //     }
 };
 </script>
 
 <style lang="scss" >
-.app-cinemaList {height:  3.293333rem}
+.app-cinemaList {
+  //   height: 3.293333rem;
+  position: relative;
+}
 
 .app-cinemaList .item {
-        padding: 0.346667rem 0;
-        margin: 0 0.4rem;
-        background-color: #fff;
-        position: relative;
-        overflow: hidden;
-        width: auto;
-        border-bottom: 1px solid #ccc;
+  padding: 0.33rem 0;
+  margin: 0 0.4rem;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  width: auto;
 }
 .app-cinemaList .title-block .title > span {
-        height: 0.613333rem;
-        line-height: 0.613333rem;
-        font-size: 0.426667rem;
-        color: #000;
+  height: 0.613333rem;
+  line-height: 0.613333rem;
+  font-size: 0.426667rem;
+  color: #000;
 }
 .app-cinemaList .price-block .d,
 .app-cinemaList .price-block .price,
 .app-cinemaList .price-block .q {
-        font-size: 0.293333rem;
-        color: #f03d37;
+  font-size: 0.293333rem;
+  color: #f03d37;
 }
 .app-cinemaList .price-block {
-        padding-top: 0.24rem;
-        padding-left: 0.08rem;
+  padding-top: 0.24rem;
+  padding-left: 0.08rem;
 }
 
 .app-cinemaList .price-block .price {
-        font-size: 0.426667rem;
+  font-size: 0.426667rem;
 }
 .distance {
-        width: auto;
+  width: auto;
 }
 
 .app-cinemaList .title-block .title {
-        height: 0.613333rem;
-        line-height: 0.613333rem;
-        font-size: 0.426667rem;
-        color: #000;
+  height: 0.613333rem;
+  line-height: 0.613333rem;
+  font-size: 0.426667rem;
+  color: #000;
 }
 .app-cinemaList .line-ellipsis {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        max-width: 7.733333rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 7.733333rem;
 }
 
 .app-cinemaList .location-block,
 .app-cinemaList .price-block,
 .app-cinemaList .title-block {
-        line-height: 1.5;
+  line-height: 1.5;
 }
 .app-cinemaList .location-block {
-        margin-top: 0.16rem;
-        font-size: 0.32rem;
-        color: #666;
-        display: flex;
-        justify-content: space-between;
+  margin-top: 0.16rem;
+  font-size: 0.32rem;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
 }
 .app-cinemaList .title-block .label-block {
-        height: 0.453333rem;
-        line-height: 0.453333rem;
-        margin-top: 0.106667rem;
-        margin-bottom: 0.106667rem;
-        overflow: hidden;
-        font-size: 0;
-        flex-shrink: 0;
+  line-height: 0.453333rem;
+  margin-top: 0.106667rem;
+  margin-bottom: 0.106667rem;
+  overflow: hidden;
+  font-size: 0;
+  flex-shrink: 0;
 }
 .app-cinemaList .discount-block {
-        color: #999;
-        margin-bottom: 0.106667rem;
+  color: #999;
 }
 .title-block .label-block div.snack,
 .title-block .label-block div.vipTag {
-        color: #f90;
-        border: 1px solid #f90;
+  color: #f90;
+  border: 1px solid #f90;
 }
-.title-block .label-block .hallType,.endorse {
-        color: #589daf;
-        border: 1px solid #589daf;
-
+.title-block .label-block .hallType,
+.endorse {
+  color: #589daf;
+  border: 1px solid #589daf;
 }
 .app-cinemaList .title-block .label-block > div {
-        position: relative;
-        display: inline-block;
-        width: auto;
-        padding: 0 0.08rem;
-        height: 0.4rem;
-        line-height: 0.4rem;
-        border-radius: 0.053333rem;
-        font-size: 0.32rem;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  padding: 0 0.08rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  border-radius: 0.053333rem;
+  font-size: 0.32rem;
 }
 .app-cinemaList .discount-block .discount-label {
-        width: 0.426667rem;
-        height: 0.373333rem;
-        position: relative;
+  width: 0.426667rem;
+  height: 0.373333rem;
+  position: relative;
 
-        left: 0;
-        display: inline-block;
+  left: 0;
+  display: inline-block;
 }
 .app-cinemaList .title-block .label-block > div + div {
-        margin-left: 0.133333rem;
+  margin-left: 0.133333rem;
 }
 .app-cinemaList .discount-block .discount-label-text {
-        margin-left: 0.133333rem;
-        font-size: 0.293333rem;
-        display: inline;
+  margin-left: 0.133333rem;
+  font-size: 0.293333rem;
+  display: inline;
 }
 
 .app-cinemaList .min-show-block > span {
-        font-size: 0.32rem;
-        color: #999;
+  font-size: 0.32rem;
+  color: #999;
 }
 </style>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="app-movie-detail">
-        <div class="movie-detail" data-bid="dp_wx_buy_movie">
+        <div class="movie-detail" data-bid="dp_wx_buy_movie" v-if="detailMovie">
             <div class="movie-filter"></div>
             <div class="poster-bg" style="background-image:url(//p0.meituan.net/71.100/movie/363e3a7e614d29b2847ff4e62afcd3f42168651.jpg)"></div>
             <div class="detail box-flex">
