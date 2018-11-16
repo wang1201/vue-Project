@@ -3,7 +3,7 @@
         <div>
              <app-home-movie-detail-info 
                 :detailMovie = "detailMovie"
-                @click.native="gotoCollect(detailMovie)"
+                
              >
             </app-home-movie-detail-info>
             <div ref="tabWrapper" id="showDays" >
@@ -123,9 +123,7 @@ export default {
         this.scroll.finishPullUp(); // 解决拉动刷新 通知这次下拉完成 再次请求
       });
     },
-    gotoCollect(info){
-        console.log(info);
-    }
+
   }
 };
 </script>

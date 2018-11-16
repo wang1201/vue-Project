@@ -40,7 +40,7 @@ export default {
     getMovieDetail(){
       // URL /search?q=vue 会将 {query: 'vue'} 作为属性传递给 SearchUser 组件。
       //当 props 是静态的时候有用。
-      console.log(this.$route);
+      // console.log(this.info);
       if(this.$route.name == 'hotShowing'){
           this.$router.push({ 
             name: 'movieDetail',
@@ -48,7 +48,11 @@ export default {
             query: {  name: this.info.nm } 
           })
       }else{
-        
+        this.$router.push({ 
+            name: 'moviePage',
+            params: {id: this.info.id},
+            query: {  name: this.info.nm, cityId:this.$store.state.chunks.city.cityId} 
+          })
       }
         
     }

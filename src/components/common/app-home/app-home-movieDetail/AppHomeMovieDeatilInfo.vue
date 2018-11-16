@@ -1,5 +1,5 @@
 <template>
-    <div class="movie-detail" data-bid="dp_wx_buy_movie" v-if="detailMovie">
+    <router-link  tag='div' :to="{name:'moviePage',params:{id:this.detailMovie.id},query:{name:this.detailMovie.nm,cityId:this.$store.state.chunks.city.cityId}}"  class="movie-detail" data-bid="dp_wx_buy_movie" v-if="detailMovie">
             <div class="movie-filter"></div>
             <div class="poster-bg" style="background-image:url(//p0.meituan.net/71.100/movie/363e3a7e614d29b2847ff4e62afcd3f42168651.jpg)"></div>
             <div class="detail box-flex">
@@ -29,13 +29,14 @@
             <div class="arrow-g">
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAWCAYAAAAfD8YZAAAAAXNSR0IArs4c6QAAAS5JREFUOBGVkktuwkAMhpOoJ+hhSouE2HbDgiVCNCAOVtQHnINHhbgMJ6g6/f9gR848kmDJeOzxZ3scskzEOfcKXUMLjXXZByYQhJlqMvz3PM//1E9Z7fJoEp5wXvWZoILRZQtg7xVYdhXQzuR2XoEB/NYCOSkVdKI/g441BnuBbmI7aMAE7ilgxyaboYOD4RMO9EWiTwhgJksBLtEvUNolRmGvwJG+yDNsXSB4s2aplR3M4Y80BnuGfiQ7m0Q2qP6JJvaLc/VpTKx5lPe9IfpibviMb+4lOXYXyGLRsRPgSTsSpASdW8Av+YQ3Er+NzgIuELdvZMcAZIUaBsgpCA55IZIEeV+NLSC32hskXCTAH9xFRyWkUsgSrhqAJfjpL8fch0dMMIGWMkmYEIn8Az5Wgp5LHlhmAAAAAElFTkSuQmCC">
             </div>
-        </div>
+        </router-link>
 </template>
 <script>
     export default {
         props:['detailMovie'],
         created(){
-            console.log(this.detailMovie);
+          console.log(this.$store.state.chunks.city.cityId);
+            // console.log(this.detailMovie);
         }
     }
 </script>

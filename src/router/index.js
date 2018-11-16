@@ -13,6 +13,8 @@ import appHomeHoting from '@com/common/app-home/AppHomeHoting'
 import appHomeComing from '@com/common/app-home/AppHomeComing'
 // 电影详情页
 import appHomeMovieDetail from '@pages/home/AppHomeMovieDetail'
+// 电影演员页
+import appHomeMoviePage from '@pages/home/AppHomeMoviePage'
 
 import appCinema from '@pages/cinema/AppCinema'
 import AppCinemaDetails from '@pages/cinema/AppCinemaDetails'
@@ -48,6 +50,12 @@ const routes = [{
     path: '/movieDetail/:id',
     name: 'movieDetail',
     component: appHomeMovieDetail,
+    props: true
+},{
+    // props 被设置为 true，route.params 将会被设置为组件属性。也就是穿进来的那个id
+    path: '/moviePage/:id',
+    name: 'moviePage',
+    component: appHomeMoviePage,
     props: true
 },{
     path: '/cinema',

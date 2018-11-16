@@ -1,5 +1,5 @@
 <template>
-     <div class="await-expected_item">
+     <div class="await-expected_item" @click="getMovieDetail">
         <div class="expected-default_img">
             <img class="poster-img" :src="info.img | changeImg('170.230') " onerror="this.style.visibility='hidden'">
             <span class="poster-wish_bg"></span>
@@ -25,6 +25,18 @@ export default {
           let _comingDate = this.info.comingTitle.substr(0,_day+1);//拿到日前面的数据
           return _comingDate
       }
+  },
+  methods:{
+     getMovieDetail(){
+      // URL /search?q=vue 会将 {query: 'vue'} 作为属性传递给 SearchUser 组件。
+      //当 props 是静态的时候有用。
+        this.$router.push({ 
+          name: 'moviePage',
+          params: {id: this.info.id},
+          query: {  name: this.info.nm, cityId:this.$store.state.chunks.city.cityId} 
+        })
+     }
+          
   }
 };
 </script>
