@@ -1,23 +1,15 @@
 // home的列表的外壳   
 <template>
   <div class="app-home-film-box">
-        <div v-if="$route.name=='comingSoon'" v-for="(value,key) of groupedMovies" :key="key" >
-            <p class="movie-group-date">{{key}}</p>
-            <app-home-film-item
-                v-for = "film of value"
-                :key  = "film.id"
-                :info = "film"
-            ></app-home-film-item>
-        </div>
-        <div v-else>
-            <app-home-film-item
-                v-for = "film in films"
-                :key  = "film.id"
-                :info = "film"
-            ></app-home-film-item>
-      </div>
+    <div v-if="$route.name=='comingSoon'" v-for="(value,key) of groupedMovies" :key="key">
+      <p class="movie-group-date">{{key}}</p>
+      <app-home-film-item v-for="film of value" :key="film.id" :info="film"></app-home-film-item>
+    </div>
+    <div v-else>
+      <app-home-film-item v-for="film in films" :key="film.id" :info="film"></app-home-film-item>
+    </div>
   </div>
-    
+
 </template>
 <script>
 import AppHomeFilmItem from "@com/common/app-home/AppHomeFilmItem";
@@ -65,16 +57,18 @@ export default {
       // 纵向scroll
       // 因为路由有动画，需要播放300毫秒，
       // 因此此处需要加定时器，在300毫秒后创建scroll对象
-      console.log('12121',this.$store.state.chunks.city.cityId);
+
+      let userInfo = JSON.parse(localStorage.userInfo);
+      console.log("12121", userInfo.token);
       setTimeout(() => {
         scroll({
-            el: "#movie-list",
-            data: this.films,
-            horizontal: false,
-            movieList: this.allResource,
-            url: "/my/ajax/moreComingList?ci="+this.$store.state.chunks.city.cityId,
-            vm: this
-          });
+          el: "#movie-list",
+          data: this.films,
+          horizontal: false,
+          movieList: this.allResource,
+          url: "/my/ajax/moreComingList?ci=" + this.$store.state.chunks.city.cityId +"token=" + userInfo.token,
+          vm: this
+        });
       }, 300);
     }
   }

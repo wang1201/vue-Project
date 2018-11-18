@@ -11,8 +11,7 @@ export const scroll = ({
   vm,
   horizontal = false
 }) => {
-  let count = 0
-
+  let count = 0;  
   // 声明BScroll
   let bscroll = new BScroll(el, {
     scrollX: horizontal,
@@ -27,11 +26,11 @@ export const scroll = ({
   // 监听 pullingUp
   bscroll.on('pullingUp', async () => {
      // 分页的ajax请求
+     console.log('token',userInfo.token);
      let result = await ajax({
         url,
         method: 'get',
         params: {
-          token: '', // 加个token, 不然拿不到更多数据
           movieIds: movieIds[count].join(',')
         }
       })

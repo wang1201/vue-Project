@@ -1,6 +1,7 @@
 // 配置路由表routes
 import vue from 'vue'; //引入package.json的vue插件
 import VueRouter from 'vue-router'; //引入package.json的路由插件
+import auth from '@util/auth'
 
 vue.use(VueRouter); //全局挂载router，全局路由，保证每个都能用到
 
@@ -25,7 +26,7 @@ import notFound from '@pages/not-found/NotFound'
 import my from '@pages/my/AppMy'
 import citis from '@pages/citis/AppCitis'
 
-
+import login from '@pages/login/login'
 
 const routes = [{
     path: '/', //默认路径时 重定向
@@ -69,12 +70,21 @@ const routes = [{
 },{
    path: '/my',
     name: 'my',
-    component: my
+    component: my,
+    beforeEnter:  (to, from ,next) => {
+        let result = auth.authLogin()
+        next(result.id ? true : {name: 'login'})
+    }
+
 },{
     path: '/citis',
     name: 'citis',
     component: citis
 }, {
+    path: '/login',
+    name: 'login',
+    component: login
+},{
     path: '/not-found',
     name: 'not-found',
     component: notFound

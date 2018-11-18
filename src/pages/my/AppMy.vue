@@ -1,55 +1,79 @@
 <template>
-    <div class="app-outerBox">
-        <section class="app-cinema">
-                <div class="my-center">
-                    <div class="header ">
-                        <img src="https://img.meituan.net/avatar/46e68cd148bccd5858126fce2f16d1da7475.jpg" class="head-icon">
-                        <div class="name"></div>
-                    </div>
-                    <div class="container">
-                        <div class="group">
-                            <div class="mb-outline-tb">
-                                <div class="orders">
-                                    <div class="title">我的订单</div>
-                                    <div class="mb-outline-b title-line"></div>
-                                    <div class="list list-two">
-                                    <!-- TODO 演出开发完毕后，改成下面注释内容 -->
-                                    <!-- <div class="list list list-three"> -->
-                                        <div class="order-item movie">
-                                            <a data-type="mip" href="/myOrder?$from=canary"><p>电影</p></a>
-                                        </div>
-                                        <!-- TODO 演出开发完毕后，改成下面注释内容 -->
-                                        <!--  <div class="order-item show"><a data-link="https://m.maoyan.com/myshow/fe/movieshoworder/order-list.html?fromTag=ordercenter"><p>演出</p></a></div>-->
-                                        <div class="order-item store"><a data-link="/store/order/list?$from=canary"><p>商城</p></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group">
-                            <div class="mb-outline-tb">
-                                    <div class="coupon item mb-line-b"><a data-link="/vod/order?$from=canary"><span>在线观影</span></a></div>
-                                    <div class="coupon item mb-line-b"><a data-link="/myCoupon?$from=canary"><span>优惠券</span></a></div>
-                                    <div class="membercard item mb-line-b"><a data-link="/membercard/mylist?version=4&amp;$from=canary"><span>折扣卡</span></a></div>
-                            </div>
-                        </div>      
-                    </div>
+  <div class="app-outerBox">
+    <section class="app-cinema" v-if="userInfo">
+      <div class="my-center">
+        <div class="header ">
+          <img v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" class="head-icon">
+          <img v-else src="https://img.meituan.net/maoyanuser/107702336ac18d9b9313e9b003020c5914743.png" class="head-icon">
+          <div class="name">{{userInfo.name}}</div>
+        </div>
+        <div class="container">
+          <div class="group">
+            <div class="mb-outline-tb">
+              <div class="orders">
+                <div class="title">我的订单</div>
+                <div class="mb-outline-b title-line"></div>
+                <div class="list list-two">
+                  <!-- TODO 演出开发完毕后，改成下面注释内容 -->
+                  <!-- <div class="list list list-three"> -->
+                  <div class="order-item movie">
+                    <a data-type="mip">
+                      <p>电影</p>
+                    </a>
+                  </div>
+                  <!-- TODO 演出开发完毕后，改成下面注释内容 -->
+                  <!--  <div class="order-item show"><a data-link="https://m.maoyan.com/myshow/fe/movieshoworder/order-list.html?fromTag=ordercenter"><p>演出</p></a></div>-->
+                  <div class="order-item store"><a>
+                      <p>商城</p>
+                    </a></div>
                 </div>
-        </section> 
-        <app-fotter></app-fotter>  
-    </div>
-    
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <div class="mb-outline-tb">
+              <div class="coupon item mb-line-b"><a><span>在线观影</span></a></div>
+              <div class="coupon item mb-line-b"><a><span>优惠券</span></a></div>
+              <div class="membercard item mb-line-b"><a><span>折扣卡</span></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <button @click="exit">exit</button>
+    <app-fotter></app-fotter>
+  </div>
+
 </template>
 
 <script>
 //底部
 import AppFotter from "@com/layout/AppFotter";
-
 export default {
-  data() {
-    return {};
+  data(){
+    return{
+      userInfo:[],
+    }
+  },
+  created(){
+    this.userInfo = JSON.parse(localStorage.userInfo);
+    console.log(this.userInfo );
+  },
+  beforeRouterEnter() {
+    this.$Progress.start();
+  },
+  mounted() {
+    this.$Progress.finish();
   },
   components: {
     AppFotter
+  },
+  methods: {
+    exit() {
+      // 退出的时候去掉本地存储中存储的登录状态
+      localStorage.removeItem("userInfo");
+      this.$router.push({ name: "home" });
+    }
   }
 };
 </script>
@@ -75,7 +99,7 @@ export default {
       text-align: center;
       img {
         display: inline-block;
-        margin-top: 1rem;
+        margin-top: 0.7rem;
         width: 1.8rem;
         height: 1.8rem;
         border-radius: 1.6rem;
@@ -92,12 +116,12 @@ export default {
       -webkit-box-flex: 1;
       flex: 1;
     }
-    .mb-outline-tb {
-      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFW…I/PqBKdxIAAAAYSURBVHjaYnz48OF/BiBg/P8fTDMABBgATToGolgmNfoAAAAASUVORK5CYII=)
-          0 top repeat-x,
-        url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFW…I/PoL90/MAAAAZSURBVHjaYvr//z8DCLM8evToPwMQAAQYAGuLCaa37ZaAAAAAAElFTkSuQmCC)
-          0 bottom repeat-x;
-    }
+    // .mb-outline-tb {
+    //   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFW…I/PqBKdxIAAAAYSURBVHjaYnz48OF/BiBg/P8fTDMABBgATToGolgmNfoAAAAASUVORK5CYII=)
+    //       0 top repeat-x,
+    //     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFW…I/PoL90/MAAAAZSURBVHjaYvr//z8DCLM8evToPwMQAAQYAGuLCaa37ZaAAAAAAElFTkSuQmCC)
+    //       0 bottom repeat-x;
+    // }
     .group {
       margin-top: 0.266667rem;
       background: #fff;

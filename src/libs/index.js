@@ -9,6 +9,9 @@ import ajax from '@util/axios'
 // filters
 import '@util/filters'
 
+// cookies
+import VueCookies from 'vue-cookies'
+
 // bus
 import bus from '@util/bus'
 
@@ -17,7 +20,7 @@ import VueProgressBar from 'vue-progressbar'
 
 //懒加载
 // import { Lazyload } from 'mint-ui';
-
+Vue.use(VueCookies)
 const options = {
   color: '#bffaf3',
   failedColor: '#874b4b',

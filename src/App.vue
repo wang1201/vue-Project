@@ -33,13 +33,13 @@ export default {
   created () {
       // 头部进度条  路由跳转时分为beforeEach  afterEach
       this.$router.beforeEach((to, from ,next) => {
-        if ( to.name !== 'user-info'  ) {
+        if ( to.name !== 'my'  ) {
           this.$Progress.start()
         }
         next()
       })
       this.$router.afterEach((to, from ,next) => {
-         if ( to.name !== 'user-info' ) {
+         if ( to.name !== 'my' ) {
           this.$Progress.finish()
         }
       })

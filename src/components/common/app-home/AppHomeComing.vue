@@ -30,8 +30,9 @@ export default {
     AppHomeAwaitingBox
   },
   async created() {
+     let userInfo = JSON.parse(localStorage.userInfo);
     let results = await this.$http({
-      url: "/my/ajax/comingList",
+      url: "/my/ajax/comingList?token="+userInfo.token,
       params:{
         ci:this.$store.state.chunks.city.cityId
       }

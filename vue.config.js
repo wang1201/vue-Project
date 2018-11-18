@@ -14,6 +14,7 @@ module.exports = {
     devServer: {
       port: 8000,
       proxy:{
+        //猫眼
         '/my':{
           target:' http://m.maoyan.com/',
           changeOrigin:true,
@@ -21,13 +22,22 @@ module.exports = {
             '^/my':'',
           }
         },
+        //百度地图
         '/bd':{
           target:' http://api.map.baidu.com/',
           changeOrigin:true,
           pathRewrite:{
             '^/bd':'',
           }
-        }
+        },
+        //登录-美团 
+        '/mt':{
+          target:' https://i.meituan.com/',
+          changeOrigin:true,
+          pathRewrite:{
+            '^/mt':'',
+          }
+        },
       }
     },
     chainWebpack  (config)  {//webpack建立api，用于生成和修改webpack配置

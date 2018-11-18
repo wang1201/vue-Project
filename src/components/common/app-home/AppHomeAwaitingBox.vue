@@ -27,8 +27,9 @@ export default {
     };
   },
   async created() {
+    let userInfo = JSON.parse(localStorage.userInfo);
     let results = await this.$http({
-      url: "/my/ajax/mostExpected",
+      url: "/my/ajax/mostExpected?token="+userInfo.token,
       params:{
         ci:this.$store.state.chunks.city.cityId
       }
@@ -44,7 +45,7 @@ export default {
       data: this.itemList,
       horizontal: true,
       paging: results.paging,
-      url: '/my/ajax/mostExpected?ci='+ this.$store.state.chunks.city.cityId,
+      url: '/my/ajax/mostExpected?ci='+ this.$store.state.chunks.city.cityId+"token="+userInfo.token,
       vm: this
     })
   },
