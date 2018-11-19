@@ -27,7 +27,7 @@ export default {
     };
   },
   async created() {
-    let userInfo = JSON.parse(localStorage.userInfo);
+     let userInfo = localStorage.userInfo ? JSON.parse(localStorage.userInfo) : '';
     let results = await this.$http({
       url: "/my/ajax/mostExpected?token="+userInfo.token,
       params:{

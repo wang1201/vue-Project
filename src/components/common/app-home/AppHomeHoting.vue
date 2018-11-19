@@ -17,9 +17,12 @@ export default {
     AppHomeFilemBox,
   },
   async created() {
-    let userInfo = JSON.parse(localStorage.userInfo);
+    // console.log(localStorage.userInfo?1:2);
+    let userInfo = localStorage.userInfo ? JSON.parse(localStorage.userInfo) : '';
+    // console.log(userInfo ? console.log(userInfo.token):'22322')
+    let token = userInfo ? userInfo.token : '';
     let results = await this.$http({
-      url: "/my/ajax/movieOnInfoList?token="+userInfo.token
+      url: "/my/ajax/movieOnInfoList?token=" + token
     });
     //整体数据，用于做scroll的时候取出来movieIds拼接
     this.allHotResults = results;

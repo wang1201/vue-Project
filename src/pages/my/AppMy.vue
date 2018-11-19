@@ -16,14 +16,14 @@
                 <div class="list list-two">
                   <!-- TODO 演出开发完毕后，改成下面注释内容 -->
                   <!-- <div class="list list list-three"> -->
-                  <div class="order-item movie">
-                    <a data-type="mip">
+                  <div @click="getMovieDetail" class="order-item movie">
+                    <a  data-type="mip">
                       <p>电影</p>
                     </a>
                   </div>
                   <!-- TODO 演出开发完毕后，改成下面注释内容 -->
                   <!--  <div class="order-item show"><a data-link="https://m.maoyan.com/myshow/fe/movieshoworder/order-list.html?fromTag=ordercenter"><p>演出</p></a></div>-->
-                  <div class="order-item store"><a>
+                  <div @click="getStoreDetail" class="order-item store"><a>
                       <p>商城</p>
                     </a></div>
                 </div>
@@ -37,10 +37,12 @@
               <div class="membercard item mb-line-b"><a><span>折扣卡</span></a></div>
             </div>
           </div>
+          <button class="exit" @click="exit">退出登录</button>
         </div>
       </div>
+
     </section>
-    <button @click="exit">exit</button>
+
     <app-fotter></app-fotter>
   </div>
 
@@ -50,14 +52,13 @@
 //底部
 import AppFotter from "@com/layout/AppFotter";
 export default {
-  data(){
-    return{
-      userInfo:[],
-    }
+  data() {
+    return {
+      userInfo: []
+    };
   },
-  created(){
-    this.userInfo = JSON.parse(localStorage.userInfo);
-    console.log(this.userInfo );
+  created() {
+     let userInfo = localStorage.userInfo ? JSON.parse(localStorage.userInfo) : '';
   },
   beforeRouterEnter() {
     this.$Progress.start();
@@ -73,7 +74,13 @@ export default {
       // 退出的时候去掉本地存储中存储的登录状态
       localStorage.removeItem("userInfo");
       this.$router.push({ name: "home" });
-    }
+    },
+   getMovieDetail(){
+      this.$router.push({ name: "myMovie" });
+   },
+   getStoreDetail(){
+     this.$router.push({ name: "myStore" });
+   }
   }
 };
 </script>
@@ -222,6 +229,17 @@ export default {
         }
       }
     }
+  }
+  .exit {
+    display: block;
+    width: 100%;
+    margin-top: 0.4rem;
+    height: 0.85rem;
+    line-height: 0.85rem;
+    background: #e54847;
+    color: #ffffff;
+    border: none;
+    font-size: 0.4rem;
   }
 }
 </style>

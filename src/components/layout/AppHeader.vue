@@ -2,7 +2,7 @@
 <template>
     <header class="app-header">     
         <div class="page-title">
-            <a v-if="!(this.$route.name == 'hotShowing' || this.$route.name == 'comingSoon'|| this.$route.name == 'cinema'|| this.$route.name == 'my')" 
+            <a v-if="!(this.$route.name == 'hotShowing' || this.$route.name == 'comingSoon'|| this.$route.name == 'cinema'|| this.$route.name == 'my'|| this.$route.name == 'phone'|| this.$route.name == 'account')" 
                 class="back" href="#" onclick="javascript: window.history.back();return false;">
                <i class="fa fa-angle-left"></i> 
             </a>
@@ -54,6 +54,10 @@ export default {
           return _to.query.name;
         case "my":
           return "我的";
+        case "myMovie": 
+          return "我的电影订单";
+          case "myStore": 
+          return "我的周边商品";
         default:
           return "猫眼电影";
       }

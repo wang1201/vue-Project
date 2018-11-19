@@ -1,197 +1,44 @@
 <template>
     <div id="login">
         <div>
-            <dl class="list">
-                
-                <p class="mes" v-if="errorMsg">{{errorMsg}}</p>
+            <dl class="list">  
+              
                 <dd class="nav">
                     <ul class="taba taban samfix" data-com="tab">
-                        <li tab-target="normal-login-form" gaevent="imt/login/tab/normal"><a class="react">美团账号登录</a></li>
-                        <li class="active" tab-target="quick-login-form" gaevent="imt/login/quickBuy/"><a class="react">手机验证登录</a></li>
-                        <div class="slide" style="width: 355px; left: 375px;"></div>
+                        <li tab-target="normal-login-form" >
+                          <router-link :to="{name:'account'}" class="react">美团账号登录</router-link>
+                          </li>
+                        <li tab-target="quick-login-form" >
+                          <router-link :to="{name:'phone'}"  class="react">手机验证登录</router-link>
+                        </li>
                     </ul>
                 </dd>
             </dl>
-            <form id="normal-login-form"  autocomplete="off" method="post" style="display:none">
-                <dl class="list list-in">
-                    <dd class="visibale">
-                        <dl>
-                            <dd class="dd-padding kv-line-r">
-                                <img class="login-icon" src="https://ms0.meituan.com/touch/img/account/login/icon_login_user@2x.png" />
-                                <input id="username" class="input-weak J-login-name J-input J-account" type="text" placeholder="账户名/手机号/Email" name="email" value="" required>
-                                <div class="to-del J-to-del" style="display: none"></div>
-                            </dd>
-                            <ul class="tel-select J-select-user J-select" style="display: none">
-                            </ul>
-                            <dd class="dd-padding kv-line-r">
-                                <img class="login-icon" src="https://ms0.meituan.com/touch/img/account/login/icon_login_password@2x.png" />
-                                <input id="password" class="input-weak J-input" type="password" placeholder="请输入您的密码" name="password" required />
-                                <div class="to-del J-to-del" style="display: none"></div>
-                            </dd>
-                        </dl>
-                    </dd>
-                </dl>
-
-                <div class="btn-wrapper">
-                    <button type="submit" gaevent="imt/login/normal" class="btn btn-larger btn-block disabled mj_login login-btn">登录</button>
-                </div>
-                <input type="hidden" name="touchEvents" />
-                <input type="hidden" name="extraFingerPrint" />
-                <div class="forget">
-                    <a class="link" href="https://i.meituan.com/risk2/resetreq">忘记密码</a>
-                </div>
-                <input type="hidden" name="requestCode">
-                <input type="hidden" name="responseCode" />
-            </form>
-            <form id="quick-login-form" autocomplete="off" method="post" style="display:block"  @submit.prevent = "login">
-                <dl class="list list-in">
-                    <dd class="visibale">
-                        <dl>
-                            <dd class="kv-line-r dd-padding" data-com="smsBtn_quick" data-requrl="/account/custom/mobilelogincode2">
-                                <img class="login-icon icon-align" src="https://ms0.meituan.com/touch/img/account/login/icon_signin_phone@2x.png" />
-                                <input type="tel" v-model="phone" name="mobile" id="login-mobile" class="input-weak kv-k J-input J-tel J-login-name" placeholder="请输入手机号" maxlength="11">
-                                <div class="to-del J-to-del-mobile J-to-del" style="display: none"></div>
-                                <button v-if="isCodeShow" @click="sendCode" id="smsCode" type="button" class="btn btn-weak kv-v btn-captacha">{{isResend ? '重新获取('+resendTime+'s)' : '获取验证码'}}</button>
-                            </dd>
-                            <ul class="tel-select J-select" style="display: none">
-                            </ul>
-                            <dd class="kv-line-r dd-padding">
-                                <img class="login-icon" src="https://ms0.meituan.com/touch/img/account/login/icon_phone_check_code@2x.png" />
-                                <input v-model="code" class="input-weak kv-k J_input_sms J-input" name="code" type="tel" pattern="[0-9]+" placeholder="请输入短信验证码">
-                                <div class="to-del J-to-del-code J-to-del" style="display: none"></div>
-                            </dd>
-
-                        </dl>
-                    </dd>
-                </dl>
-                <div class="btn-wrapper">
-                    <button type="submit"  class="btn btn-larger btn-block mj_login login-btn">登录</button>
-                </div>
-            </form>
-
         </div>
+        <router-view
+         tag="div"
+         >
+          
+        </router-view>
         <ul class="subline">
             <li><a href="//i.meituan.com/account/signup">立即注册</a></li>
             <li class="pull-right"><a href="https://i.meituan.com/risk2/resetreq">找回密码</a></li>
         </ul>
+        
         <footer>
             <div class="copyright"><span class="copyright">&copy; 猫眼电影 客服电话：<a data-evt="ft/hotline" href="tel:4006705335">400-670-5335</a></span></div>
         </footer>
     </div>
 </template>
+
 <script>
 export default {
-  data() {
-    return {
-      isCodeShow: false,
-      phone: "18500210807",
-      isResend: false,
-      resendTime: 60,
-      code: "",
-      errorMsg: "",
-      returnMsg:'',
-    };
-  },
-  methods: {
-    async sendCode() {
-      if (!this.isResend) {
-        // 发送验证码
-        // ajax 如过成功
-        let res = await this.$http(
-          {
-            url: "/mt/account/custom/mobilelogincode2",
-            method: "POST",
-            
-            // headers: {
-            //   "Content-type": "application/x-www-form-urlencoded"
-            // },
-            data: {
-              mobile: this.phone
-            },
-            transformRequest: [function (data) {
-              let ret = ''
-              for (let it in data) {
-                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-              }
-              return ret
-            }],
-            
-          },
-          true
-        );
-        if (res.status === 0) {
-          // 验证码发送成功
-          this.returnMsg = res.ext;
-          this.authCode();
-        } else {
-          this.errorMsg = res.message;
-        }
-      }
-    },
-    async login() {
-      let res = await this.$http(
-        {
-          url: "/mt/account/mobilelogin2",
-          method: "POST",
-          data: {
-            // "2f3ee20be6a12d25c541a3d1dfe2f839"
-            mobile: this.returnMsg.user,
-            code: this.code,
-            touchEvents:
-              '{"login_quick_input_mobile":{"editStartedTimeStamp":1542535337,"editFinishedTimeStamp":1542535340,"keyboardEvent":"0-6-0-"},"login_quick_input_sms_code":{"editStartedTimeStamp":1542535340,"editFinishedTimeStamp":1542535351,"keyboardEvent":"0-1-0-bp|ah|n4|9g|8p"},"login_quick_button_sms_code":{"touchPoint":"{2, 19}","touchTimeStamp":1542535337},"login_quick_button_submit":{"touchPoint":"{250, 1}","touchTimeStamp":1542535351}}',
-            extraFingerPrint:
-              '{"listOfPlugins":"[]","cookiesEnabled":true,"screenResolution":"375*667","colorDepth":24,"doNotTrack":"unknown","canvas":"1ffccc8b7e66aee6c2e5b3a44a4a5f98f9038b13","webglVendor":"Google Inc.","webglRenderer":"ANGLE (Intel(R) Iris(TM) Graphics 5100 Direct3D11 vs_5_0 ps_5_0)","urlSource":"http://m.maoyan.com/myCenter?$from=canary&isid_key=B407023738D2EE3CD1B48EA6ACE3F9D1FE14DFB0E3F1ADC7A47B855650A8BCC5&isid_key=141CE98A52D86F06F6236B6F897024256E21412143123A8423CDA2E847EA64A7"}',
-            action: 'login',
-            request_code: this.returnMsg.request_code
-          },
-          transformRequest: [function (data) {
-              let ret = ''
-              for (let it in data) {
-                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-              }
-              return ret
-            }],
-        },
-        true
-      );
-      if (res.status === 0) {
-        // 验证码发送成功
-
-        // 存储
-        localStorage.setItem("userInfo", JSON.stringify(res.data));
-        for (const key in res.data) {
-          this.$cookies.set(key, res.data[key]);
-        }
-
-        this.$router.replace({ name: "my" });
-      }else {
-          this.errorMsg = res.message;
-        }
-    },
-    authCode() {
-      // 验证码处理
-      this.isResend = true;
-      this.timer = setInterval(() => {
-        this.resendTime--;
-        if (this.resendTime === 0) {
-          clearInterval(this.timer);
-          this.isResend = false;
-          this.resendTime = 60;
-        }
-      }, 1000);
-    }
-  },
-  watch: {
-    phone: {
-      immediate: true,
-      handler(val) {
-        let result = /^1[34578]\d{9}$/.test(this.phone.trim());
-        this.isCodeShow = result;
-      }
+  data(){
+    return{
+       errorMsg: "",
     }
   }
-};
-</script>
+}
 </script>
 
 <style lang="scss">
@@ -313,11 +160,13 @@ export default {
     list-style-type: disc;
   }
   .taba li {
-    display: block;
+   display: block;
     text-align: center;
     -webkit-box-flex: 1;
     list-style: none;
     position: relative;
+    width: 50%;
+    overflow: hidden;
   }
   li {
     display: list-item;
@@ -337,19 +186,10 @@ export default {
     white-space: nowrap;
   }
   a {
+    width: 100%;
     color: #df2d2d;
     text-decoration: none;
     outline: 0;
-  }
-  .taba li.active {
-    color: #df2d2d;
-    // border-bottom: 0.05rem solid #df2d2d;
-  }
-  .taba .slide {
-    position: absolute;
-    bottom: -0.08rem;
-    border-bottom: 0.08rem solid #df2d2d;
-    -webkit-transition: left 0.2s ease-in;
   }
   dl.list:first-child {
     margin: 0;
@@ -425,12 +265,6 @@ export default {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-  }
-  .taba .slide {
-    position: absolute;
-    bottom: -0.08rem;
-    border-bottom: 0.08rem solid #df2d2d;
-    -webkit-transition: left 0.2s ease-in;
   }
   button,
   input,
@@ -522,6 +356,13 @@ export default {
     height: 0.8rem;
     margin-top: 0.2rem;
     margin-right: 0.25rem;
+  }
+ .react.router-link-exact-active.router-link-active{
+   color: #df2d2d;
+  //  position: absolute;
+    // bottom: -0.08rem;
+    border-bottom: 0.08rem solid #df2d2d;
+    -webkit-transition: left 0.2s ease-in;
   }
 }
 </style>

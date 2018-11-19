@@ -59,11 +59,10 @@ export default {
       url: "/my/movie/" + this.id+'?cityId='+ this.cityId
     });
     let meta = results.replace(/(<meta.*?>)/g, "");
-    let link = meta.replace(
-      /(href="\/\/ms0.meituan.net\/canary\/css\/main-0b8865d0.css")/g,
-      ""
-    );
-    this.html = link.replace(/id="app"/, "");
+    //ms0.meituan.net/canary/css/main-c9d3c856.css
+    let link = meta.replace( /(href="\/\/ms0.meituan.net\/canary\/css\/main-0b8865d0.css")/g, "");
+    let link2 = link.replace( /(href="\/\/ms0.meituan.net\/canary\/css\/main-c9d3c856.css")/g, "");
+    this.html = link2.replace(/id="app"/, "");
     setTimeout(() => {
       document.querySelector(".app-movie-page").innerHTML = this.html;
     }, 0);

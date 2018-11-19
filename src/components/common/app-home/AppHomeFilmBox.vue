@@ -57,9 +57,7 @@ export default {
       // 纵向scroll
       // 因为路由有动画，需要播放300毫秒，
       // 因此此处需要加定时器，在300毫秒后创建scroll对象
-
-      let userInfo = JSON.parse(localStorage.userInfo);
-      console.log("12121", userInfo.token);
+     let userInfo = localStorage.userInfo ? JSON.parse(localStorage.userInfo) : '';
       setTimeout(() => {
         scroll({
           el: "#movie-list",

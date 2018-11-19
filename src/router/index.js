@@ -23,10 +23,21 @@ import AppCinemaDetails from '@pages/cinema/AppCinemaDetails'
 
 
 import notFound from '@pages/not-found/NotFound'
+//我的
 import my from '@pages/my/AppMy'
+//我的-电影
+import appMyMovie from '@pages/my/AppMyMovie'
+//我的-商城
+import appMyStore from '@pages/my/AppMyStore'
+//城市
 import citis from '@pages/citis/AppCitis'
 
+//登录
 import login from '@pages/login/login'
+//账号登录
+import appLoginAccount from '@pages/login/AppLoginAccount'
+//手机登录
+import appLoginPhone from '@pages/login/AppLoginPhone'
 
 const routes = [{
     path: '/', //默认路径时 重定向
@@ -75,7 +86,14 @@ const routes = [{
         let result = auth.authLogin()
         next(result.id ? true : {name: 'login'})
     }
-
+},{
+    path: 'myMovie',
+    name: 'myMovie', 
+    component: appMyMovie,  
+},{
+    path: 'myStore',
+    name: 'myStore', 
+    component: appMyStore, 
 },{
     path: '/citis',
     name: 'citis',
@@ -83,7 +101,17 @@ const routes = [{
 }, {
     path: '/login',
     name: 'login',
-    component: login
+    component: login,
+    redirect:'/login/phone',
+    children: [{//二级路由--正在热映
+        path: 'account',
+        name: 'account', 
+        component: appLoginAccount, 
+    },{//二级路由--正在热映
+        path: 'phone',
+        name: 'phone', 
+        component: appLoginPhone, 
+    }]
 },{
     path: '/not-found',
     name: 'not-found',
